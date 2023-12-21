@@ -1,0 +1,131 @@
+{
+  "name": "Grade",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "gradeSubjects": {
+      "type": "hasMany",
+      "model": "GradeSubject",
+      "foreignKey": "gradeId"
+    }
+  },
+  "acls": [],
+  "methods": {
+    "CreateGradeOrGroup": {
+      "accepts": [
+        {
+          "arg": "body",
+          "type": "any",
+          "required": false,
+          "description": "",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "grades",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/GradeOrGroup",
+          "verb": "post"
+        },
+        {
+          "path": "/GradeAndGroup",
+          "verb": "post"
+        }
+      ]
+    },
+    "CreateOne": {
+      "accepts": [
+        {
+          "arg": "grade",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "newGrade",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "post"
+        }
+      ]
+    },
+    "GetAll": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "grades",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "get"
+        }
+      ]
+    },
+    "prototype.UpdateGroups": {
+      "accepts": [
+        {
+          "arg": "teacherId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        },
+        {
+          "arg": "teacherGroups",
+          "type": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "updated",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/UpdateGroups",
+          "verb": "patch"
+        }
+      ]
+    }
+  }
+}

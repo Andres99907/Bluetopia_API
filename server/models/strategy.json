@@ -1,0 +1,517 @@
+{
+  "name": "Strategy",
+  "plural": "Strategies",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "generatingQuestion": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "string"
+    },
+    "endDate": {
+      "type": "string"
+    },
+    "subjects": {
+      "type": [
+        "object"
+      ]
+    },
+    "skills": {
+      "type": [
+        "object"
+      ]
+    },
+    "lastModified": {
+      "type": "string"
+    },
+    "isByTeams": {
+      "type": "boolean",
+      "required": false,
+      "default": null
+    },
+    "useCustomRoles": {
+      "type": "boolean",
+      "required": false,
+      "default": null
+    },
+    "isDeleted": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "statusId": {
+      "type": "number",
+      "required": true,
+      "default": 1
+    }
+  },
+  "validations": [],
+  "relations": {
+    "template": {
+      "type": "belongsTo",
+      "model": "Template",
+      "foreignKey": "templateId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "status": {
+      "type": "belongsTo",
+      "model": "StrategyStatus",
+      "foreignKey": "statusId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "user": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": "userId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "parcialProducts": {
+      "type": "hasMany",
+      "model": "ParcialProduct",
+      "foreignKey": "strategyId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "strategyGroup": {
+      "type": "hasOne",
+      "model": "StrategyGroup",
+      "foreignKey": "strategyId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "events": {
+      "type": "hasMany",
+      "model": "Event",
+      "foreignKey": "strategyId"
+    },
+    "teams": {
+      "type": "hasMany",
+      "model": "Team",
+      "foreignKey": "strategyId"
+    },
+    "customRoles": {
+      "type": "hasMany",
+      "model": "TeamRole",
+      "foreignKey": "strategyId"
+    },
+    "school": {
+      "type": "belongsTo",
+      "model": "School",
+      "foreignKey": "schoolId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "CreateOne",
+        "CreateBasedOnAnother",
+        "Update",
+        "GetData",
+        "GetActivities",
+        "GetAllOfSchool",
+        "GetAllOfTeacher",
+        "GetStudents",
+        "Delete",
+        "GetSuggested",
+        "ResetTeams",
+        "GetAllOfStudent"
+      ]
+    }
+  ],
+  "methods": {
+    "CreateOne": {
+      "accepts": [
+        {
+          "arg": "strategy",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "newTeachers",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "post"
+        }
+      ]
+    },
+    "prototype.CreateBasedOnAnother": {
+      "accepts": [
+        {
+          "arg": "ctx",
+          "type": "object",
+          "required": true,
+          "description": "",
+          "http": {
+            "source": "req"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "newTeachers",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/Clone",
+          "verb": "post"
+        }
+      ]
+    },
+    "prototype.Update": {
+      "accepts": [
+        {
+          "arg": "strategy",
+          "type": "object",
+          "required": true,
+          "description": ""
+        },
+        {
+          "arg": "onlyStrategy",
+          "type": "boolean",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "strategyUpdated",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "patch"
+        },
+        {
+          "path": "/OnlyStrategy/:onlyStrategy",
+          "verb": "patch"
+        }
+      ]
+    },
+    "GetData": {
+      "accepts": [
+        {
+          "arg": "strategyId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "strategy",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/:strategyId",
+          "verb": "get"
+        }
+      ]
+    },
+    "prototype.GetActivities": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "strategy",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/Activities",
+          "verb": "get"
+        }
+      ]
+    },
+    "GetAllOfSchool": {
+      "accepts": [
+        {
+          "arg": "schoolId",
+          "type": "number",
+          "required": true
+        },
+        {
+          "arg": "gradeId",
+          "type": "number",
+          "required": false
+        },
+        {
+          "arg": "groupId",
+          "type": "number",
+          "required": false
+        },
+        {
+          "arg": "templateId",
+          "type": "number",
+          "required": false
+        },
+        {
+          "arg": "statuses",
+          "type": "array",
+          "required": false
+        }
+      ],
+      "returns": [
+        {
+          "arg": "strategies",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/OfSchool/:schoolId",
+          "verb": "get"
+        },
+        {
+          "path": "/OfSchool/:schoolId/FilteredBy/Grade/:gradeId/Group/:groupId/Template/:templateId/Statuses/:statuses",
+          "verb": "get"
+        }
+      ]
+    },
+    "GetAllOfTeacher": {
+      "accepts": [
+        {
+          "arg": "ctx",
+          "type": "object",
+          "required": true,
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "gradeId",
+          "type": "number",
+          "required": false
+        },
+        {
+          "arg": "groupId",
+          "type": "number",
+          "required": false
+        },
+        {
+          "arg": "templateId",
+          "type": "number",
+          "required": false
+        },
+        {
+          "arg": "statuses",
+          "type": "array",
+          "required": false
+        }
+      ],
+      "returns": [
+        {
+          "arg": "strategies",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "get"
+        },
+        {
+          "path": "/FilteredBy/Grade/:gradeId/Group/:groupId/Template/:templateId/Statuses/:statuses",
+          "verb": "get"
+        }
+      ]
+    },
+    "GetStudents": {
+      "accepts": [
+        {
+          "arg": "ctx",
+          "type": "object",
+          "required": true,
+          "description": "",
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "strategyId",
+          "type": "number",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "students",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/:strategyId/Students",
+          "verb": "get"
+        }
+      ]
+    },
+    "prototype.Delete": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "deleted",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "delete"
+        }
+      ]
+    },
+    "GetSuggested": {
+      "accepts": [
+        {
+          "arg": "strategySubject",
+          "type": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "deleted",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/Suggested",
+          "verb": "get"
+        },
+        {
+          "path": "/Suggested/:strategySubject",
+          "verb": "get"
+        }
+      ]
+    },
+    "ResetTeams": {
+      "accepts": [
+        {
+          "arg": "strategyId",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "returns": [
+        {
+          "arg": "strategyTeams",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/:strategyId/ResetTeams",
+          "verb": "patch"
+        }
+      ]
+    },
+    "GetAllOfStudent": {
+      "accepts": [
+        {
+          "arg": "ctx",
+          "type": "object",
+          "required": true,
+          "http": {
+            "source": "req"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "strategies",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/OfStudent",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "StrategyGroup",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "strategyId": {
+      "type": "number",
+      "required": true
+    },
+    "gradeId": {
+      "type": "number",
+      "required": true
+    },
+    "groupId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "strategy": {
+      "type": "belongsTo",
+      "model": "Strategy",
+      "foreignKey": "strategyId"
+    },
+    "school": {
+      "type": "belongsTo",
+      "model": "School",
+      "foreignKey": "schoolId"
+    },
+    "grade": {
+      "type": "belongsTo",
+      "model": "Grade",
+      "foreignKey": "gradeId"
+    },
+    "group": {
+      "type": "belongsTo",
+      "model": "Group",
+      "foreignKey": "groupId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

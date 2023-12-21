@@ -1,0 +1,22 @@
+{
+  "name": "TeacherSubject",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "teacherId": {
+      "type": "number",
+      "required": false
+    },
+    "subjectId": {
+      "type": "number",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

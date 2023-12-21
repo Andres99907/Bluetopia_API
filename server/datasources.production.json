@@ -1,0 +1,61 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mysqlDev": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "bluetopia",
+    "password": "K2gNoiq26&27",
+    "name": "mysqlDev",
+    "user": "bluetopia",
+    "connector": "mysql"
+  },
+  "localFiles": {
+    "name": "localFiles",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./server/storage",
+    "nameConflict": "makeUnique"
+  },
+  "mailDev": {
+    "name": "mailDev",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "mail.jarabesoft.com",
+        "secure": false,
+        "port": 25,
+        "auth": {
+          "user": "templatemailer@jarabesoft.com",
+          "pass": "uFMA46HKtYM$N=G9"
+        },
+        "tls": {
+          "rejectUnauthorized": false
+        }
+      }
+    ]
+  },
+  "adminMail": {
+    "name": "adminMail",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "mail.jarabesoft.com",
+        "secure": true,
+        "port": 465,
+        "auth": {
+          "user": "testmail@jarabesoft.com",
+          "pass": "#7L%yaMFV7]@"
+        },
+        "tls": {
+          "rejectUnauthorized": false
+        }
+      }
+    ]
+  }
+}

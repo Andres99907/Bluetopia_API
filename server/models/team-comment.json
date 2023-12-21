@@ -1,0 +1,34 @@
+{
+  "name": "TeamComment",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "comment": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "parcialProduct": {
+      "type": "belongsTo",
+      "model": "ParcialProduct",
+      "foreignKey": "parcialProductId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "team": {
+      "type": "belongsTo",
+      "model": "Team",
+      "foreignKey": "teamId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

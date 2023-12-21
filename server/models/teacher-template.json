@@ -1,0 +1,39 @@
+{
+  "name": "TeacherTemplate",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "topic": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "generatingQuestion": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "template": {
+      "type": "belongsTo",
+      "model": "Template",
+      "foreignKey": "templateId"
+    },
+    "grade": {
+      "type": "belongsTo",
+      "model": "Grade",
+      "foreignKey": "gradeId"
+    },
+    "group": {
+      "type": "belongsTo",
+      "model": "Group",
+      "foreignKey": "groupId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

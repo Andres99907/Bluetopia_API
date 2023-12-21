@@ -1,0 +1,54 @@
+[
+    {
+        "name": "Museo",
+        "description": "Preparen un museo del tema de su proyecto y exhiban distintas exposiciones a manera de galerías, incluyan la guía."
+    },
+    {
+        "name": "Cuenta cuentos",
+        "description": "Planeen un cuenta cuentos para que los alumnos compartan todo acerca de su proyecto, incluyan disfraces, esenografía o títeres."
+    },
+    {
+        "name": "Película",
+        "description": "Presenten una película elaborada por ustedes donde se cuente todo el proyecto, incluyan palomitas."
+    },
+    {
+        "name": "Noticiero",
+        "description": "Generen un noticiero narrando todo lo ocurrido y aprendido dentro del proyecto, preparen su set y graben."
+    },
+    {
+        "name": "Campaña",
+        "description": "Lancen su campaña incluyendo medios digitales y medios impresos, aprovechen las redes sociales."
+    },
+    {
+        "name": "Documental",
+        "description": "Presenten un documental elaborado por ustedes donde demuestren todo lo aprendido en el proyecto."
+    },
+    {
+        "name": "Galería artística",
+        "description": "Monten una galería donde el arte sea el medio para presentar su proyecto, incluyan un audio guía."
+    },
+    {
+        "name": "Show temático",
+        "description": "Preparen un show temático incluyendo teatro, baile, música, narrativa u otras formas de dar a conocer su proyecto."
+    },
+    {
+        "name": "Simulador",
+        "description": "Generen un simulador para mostrar los temas del proyecto de una forma interactiva."
+    },
+    {
+        "name": "Maratón de conocimientos",
+        "description": "Organicen un juego para ir evidenciando los descubrimientos y aprendizajes durante el proyecto."
+    },
+    {
+        "name": "Rally ",
+        "description": "Organicen un rally para jugar a descubrir los productos del proyecto de una forma divertida."
+    },
+    {
+        "name": "Exposición ante un jurado",
+        "description": "Inviten a expertos del tema a ser jueces mientras los alumnos exponen sus proyectos, utilicen tecnología para hacerlo."
+    },
+    {
+        "name": "Tienda",
+        "description": "Preparen una tienda de artículos y objetos que reflejen los aprendizajes del proyecto, utilicen dinero ficticio o boletitos."
+    }
+]

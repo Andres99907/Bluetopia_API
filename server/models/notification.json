@@ -1,0 +1,122 @@
+{
+  "name": "Notification",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Sin definir"
+    },
+    "content": {
+      "type": "string",
+      "required": true,
+      "default": "Sin definir contenido"
+    },
+    "timestamp": {
+      "type": "date",
+      "defaultFn": "now"
+    },
+    "image": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "seen": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "usuario": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {
+    "getById": {
+      "accepts": [
+        {
+          "arg": "ctx",
+          "type": "object",
+          "required": true,
+          "description": "Current Context",
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "limit",
+          "required": false,
+          "type": "string",
+          "description": "ultimo id de notificacion"
+        },
+        {
+          "arg": "lastId",
+          "required": false,
+          "type": "string",
+          "description": "ultimo id de notificacion"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "getById",
+          "type": "object",
+          "root": true,
+          "description": "traer a las notificaciones de un usuario por Id"
+        }
+      ],
+      "description": "traer a las notificaciones de un usuario por Id",
+      "http": [
+        {
+          "path": "/getLast5/:id",
+          "verb": "get"
+        },
+        {
+          "path": "/getLast5",
+          "verb": "get"
+        }
+      ]
+    },
+    "setSeen": {
+      "accepts": [
+        {
+          "arg": "ctx",
+          "type": "object",
+          "required": true,
+          "description": "Current Context",
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "id",
+          "required": false,
+          "type": "string",
+          "description": "id de notificacion para dejar en visto"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "getById",
+          "type": "object",
+          "root": true,
+          "description": "traer a las notificaciones de un usuario por Id"
+        }
+      ],
+      "description": "traer a las notificaciones de un usuario por Id",
+      "http": [
+        {
+          "path": "/setSeen/:id",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

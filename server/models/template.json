@@ -1,0 +1,122 @@
+{
+  "name": "Template",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "nickname": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "difficulty": {
+      "type": "number",
+      "required": true
+    },
+    "estimatedClasses": {
+      "type": "text",
+      "required": true
+    },
+    "suggestedAges": {
+      "type": "text",
+      "required": true
+    },
+    "suggestedSubjects": {
+      "type": "text",
+      "required": true
+    },
+    "skillsDeveloped": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "type": {
+      "type": "belongsTo",
+      "model": "TemplateType",
+      "foreignKey": "templateTypeId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "GetAll",
+        "GetOne"
+      ]
+    }
+  ],
+  "methods": {
+    "GetAll": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "templates",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "get"
+        }
+      ]
+    },
+    "GetOne": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "templates",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/:id",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

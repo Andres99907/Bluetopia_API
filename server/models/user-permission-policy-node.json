@@ -1,0 +1,62 @@
+{
+  "name": "UserPermissionPolicyNode",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "key": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "parent": {
+      "type": "belongsTo",
+      "model": "UserPermissionPolicyNode",
+      "foreignKey": "parentId"
+    },
+    "children": {
+      "type": "hasMany",
+      "model": "UserPermissionPolicyNode",
+      "foreignKey": "parentId"
+    }
+  },
+  "acls": [],
+  "methods": {
+    "getUserPermissionPolicyNodes": {
+      "accepts": [
+        {
+          "arg": "ctx",
+          "type": "object",
+          "required": true,
+          "description": "Current Context",
+          "http": {
+            "source": "req"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "userPermissionPolicyNodes",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "Gets all UserPermissionPolicyNodes",
+      "http": [
+        {
+          "path": "/",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

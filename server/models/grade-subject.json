@@ -1,0 +1,62 @@
+{
+  "name": "GradeSubject",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "subject": {
+      "type": "belongsTo",
+      "model": "Subject",
+      "foreignKey": "subjectId"
+    },
+    "teacher": {
+      "type": "belongsTo",
+      "model": "Teacher",
+      "foreignKey": "teacherId"
+    }
+  },
+  "acls": [],
+  "methods": {
+    "UpdateGradeTeacherSubjects": {
+      "accepts": [
+        {
+          "arg": "teacherId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        },
+        {
+          "arg": "gradeId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        },
+        {
+          "arg": "gradeSubjects",
+          "type": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "updated",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/UpdateGradeTeacherSubjects",
+          "verb": "patch"
+        }
+      ]
+    }
+  }
+}

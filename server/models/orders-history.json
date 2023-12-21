@@ -1,0 +1,60 @@
+{
+  "name": "OrdersHistory",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "required": true
+    },
+    "productsList": {
+      "type": [
+        "object"
+      ],
+      "required": true
+    },
+    "totalPrice": {
+      "type": "string",
+      "required": true
+    },
+    "refounded": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "usuario": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": "userId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [],
+  "methods": {
+    "getOrdHist": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "list",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/getOrdHist",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

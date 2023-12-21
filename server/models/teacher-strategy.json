@@ -1,0 +1,22 @@
+{
+  "name": "TeacherStrategy",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "teacherId": {
+      "type": "number",
+      "required": true
+    },
+    "strategyId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,24 @@
+{
+  "name": "UserPermissionPolicyRelation",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "userPermissionPolicyNode": {
+      "type": "belongsTo",
+      "model": "UserPermissionPolicyNode",
+      "foreignKey": ""
+    },
+    "usuario": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,82 @@
+{
+  "name": "Skill",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "GetAll",
+        "CreateOne"
+      ]
+    }
+  ],
+  "methods": {
+    "GetAll": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "subjects",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "get"
+        }
+      ]
+    },
+    "CreateOne": {
+      "accepts": [
+        {
+          "arg": "skill",
+          "type": "object",
+          "required": true,
+          "description": "",
+          "http":{
+            "source":"body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "skills",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "post"
+        }
+      ]
+    }
+  }
+}

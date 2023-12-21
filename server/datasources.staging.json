@@ -1,0 +1,12 @@
+{
+  "mysqlDev": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "bluetopia",
+    "password": "blu3t0p14",
+    "name": "mysqlDev",
+    "user": "bluetopia",
+    "connector": "mysql"
+  }
+}

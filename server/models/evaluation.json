@@ -1,0 +1,217 @@
+{
+  "name": "Evaluation",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "calification": {
+      "type": "number",
+      "required": true,
+      "mysql": {
+        "dataType": "DECIMAL",
+        "dataPrecision": 5,
+        "dataScale": 2
+      }
+    },
+    "rubricsCalifications": {
+      "type": "array",
+      "required": false
+    },
+    "comment": {
+      "type": "string"
+    },
+    "isDone": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "hasBeenEvaluated": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "parcialProduct": {
+      "type": "belongsTo",
+      "model": "ParcialProduct",
+      "foreignKey": "parcialProductId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "student": {
+      "type": "belongsTo",
+      "model": "Student",
+      "foreignKey": "studentId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "studentFiles": {
+      "type": "hasAndBelongsToMany",
+      "model": "UploadedFiles",
+      "foreignKey": "evaluationId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "Update",
+        "GetStudentEvaluation",
+        "UploadStudentFile",
+        "DeleteStudentFile",
+        "ToggleIsDone",
+        "GetByStrategyOfStudent"
+      ]
+    }
+  ],
+  "methods": {
+    "GetStudentEvaluation": {
+      "accepts": [
+        {
+          "arg": "studentId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        },
+        {
+          "arg": "parcialProductId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "evaluation",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/OfStudent/:studentId/OfProduct/:parcialProductId",
+          "verb": "get"
+        }
+      ]
+    },
+    "prototype.UploadStudentFile": {
+      "accepts": [
+        {
+          "arg": "file",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "evaluation",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/UploadFile",
+          "verb": "patch"
+        }
+      ]
+    },
+    "prototype.DeleteStudentFile": {
+      "accepts": [
+        {
+          "arg": "fileId",
+          "type": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "evaluation",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/StudentFile/:fileId",
+          "verb": "delete"
+        }
+      ]
+    },
+    "prototype.ToggleIsDone": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "evaluation",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/ToggleIsDone",
+          "verb": "patch"
+        }
+      ]
+    },
+    "GetByStrategyOfStudent": {
+      "accepts": [
+        {
+          "arg": "studentId",
+          "type": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "arg": "strategyId",
+          "type": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "evaluations",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/of/:studentId/in/:strategyId",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

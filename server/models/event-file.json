@@ -1,0 +1,28 @@
+{
+  "name": "EventFile",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "eventId": {
+      "type": "number",
+      "required": true
+    },
+    "fileId": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "file": {
+      "type": "belongsTo",
+      "model": "UploadedFiles",
+      "foreignKey": "fileId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,634 @@
+{
+    "name": "Usuario",
+    "base": "User",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "hidden": [
+        "profileImageId",
+        "FBToken",
+        "GToken",
+        "AppleToken"
+    ],
+    "scope": {
+        "include": ["profileImage", "teacher", "data", "school"]
+    },
+    "properties": {
+        "username": {
+            "type": "string",
+            "required": false
+        },
+        "email": {
+            "type": "string",
+            "required": false,
+            "default": null
+        },
+        "FBToken": {
+            "type": "string"
+        },
+        "GToken": {
+            "type": "string"
+        },
+        "AppleToken": {
+            "type": "string",
+            "mysql": {
+                "dataType": "LONGTEXT"
+            }
+        },
+        "active": {
+            "type": "boolean",
+            "default": false
+        },
+        "phone": {
+            "type": "string"
+        },
+        "customerId": {
+            "type": "string"
+        }
+    },
+    "validations": [],
+    "relations": {
+        "accessTokens": {
+            "type": "hasMany",
+            "model": "UsuarioAccessToken",
+            "foreignKey": "userId"
+        },
+        "profileImage": {
+            "type": "belongsTo",
+            "model": "UploadedFiles",
+            "foreignKey": "profileImageId"
+        },
+        "pushTokens": {
+            "type": "hasMany",
+            "model": "PushTokens",
+            "foreignKey": "",
+            "options": {
+                "nestRemoting": true
+            }
+        },
+        "userPermissions": {
+            "type": "hasMany",
+            "model": "UserPermissionPolicyNode",
+            "foreignKey": "",
+            "through": "UserPermissionPolicyRelation"
+        },
+        "ordersHistories": {
+            "type": "hasMany",
+            "model": "ordersHistory",
+            "foreignKey": "userId",
+            "options": {
+                "nestRemoting": true
+            }
+        },
+        "data": {
+            "type": "hasOne",
+            "model": "UserData",
+            "foreignKey": "userId",
+            "options": {
+                "nestRemoting": true
+            }
+        },
+        "school": {
+            "type": "belongsTo",
+            "model": "School",
+            "foreignKey": "schoolId",
+            "options": {
+                "nestRemoting": true
+            }
+        },
+        "teacher": {
+            "type": "hasOne",
+            "model": "Teacher",
+            "foreignKey": "userId",
+            "options": {
+                "nestRemoting": true
+            }
+        },
+        "student": {
+            "type": "hasOne",
+            "model": "Student",
+            "foreignKey": "userId",
+            "options": {
+                "nestRemoting": true
+            }
+        }
+    },
+    "acls": [{
+            "accessType": "EXECUTE",
+            "principalType": "ROLE",
+            "principalId": "$everyone",
+            "permission": "DENY"
+        },
+        {
+            "accessType": "*",
+            "principalType": "ROLE",
+            "principalId": "$owner",
+            "permission": "ALLOW",
+            "property": [
+                "updatePushToken",
+                "UpdateProfile"
+            ]
+        },
+        {
+            "accessType": "EXECUTE",
+            "principalType": "ROLE",
+            "principalId": "$everyone",
+            "permission": "ALLOW",
+            "property": [
+                "register",
+                "getRoles",
+                "loginBySocialMedia",
+                "loginIfActive",
+                "RegisterWithEmailVerification",
+                "VerifyEmail",
+                "RegisterUser",
+                "IsUsernameDuplicated",
+                "SchoolByUsuario"
+            ]
+        },
+        {
+            "accessType": "EXECUTE",
+            "principalType": "ROLE",
+            "principalId": "$authenticated",
+            "permission": "ALLOW",
+            "property": [
+                "userWithCredentials",
+                "changeProfileImage",
+                "updatePushToken",
+                "testPush",
+                "UpdateProfile",
+                "GetFileLibrary"
+            ]
+        },
+        {
+            "accessType": "EXECUTE",
+            "principalType": "ROLE",
+            "principalId": "SuperUser",
+            "permission": "ALLOW",
+            "property": [
+                "getAnyUsers",
+                "updateAnyUser",
+                "registerAdmins",
+                "registerAdmin",
+                "changeAnyPassword"
+            ]
+        }
+    ],
+    "methods": {
+        "RegisterUser": {
+            "accepts": [{
+                    "arg": "user",
+                    "type": "object",
+                    "required": true,
+                    "description": "user"
+                },
+                {
+                    "arg": "userData",
+                    "type": "object",
+                    "required": false,
+                    "description": "userData"
+                },
+                {
+                    "arg": "role",
+                    "type": "string",
+                    "required": true,
+                    "description": "new user role"
+                }
+            ],
+            "returns": [{
+                "arg": "newUser",
+                "type": "object",
+                "root": true,
+                "description": "new user in db"
+            }],
+            "description": "",
+            "http": [{
+                "path": "/",
+                "verb": "post"
+            }]
+        },
+        "prototype.changeProfileImage": {
+            "accepts": [{
+                "arg": "newImage",
+                "type": "object",
+                "required": true,
+                "description": "new image in base 64"
+            }],
+            "returns": [{
+                "arg": "updatedUser",
+                "type": "object",
+                "root": true,
+                "description": "updated user from db"
+            }],
+            "description": "changes the user's prifile image for a new one",
+            "http": [{
+                "path": "/changeProfileImage",
+                "verb": "post"
+            }]
+        },
+        "prototype.updatePushTokenMobile": {
+            "accepts": [{
+                "arg": "body",
+                "type": "object",
+                "required": true,
+                "description": "token to be saved",
+                "http": {
+                    "source": "body"
+                }
+            }],
+            "returns": [],
+            "description": "updates a user's push token",
+            "http": [{
+                "path": "/updatePushTokenMobile",
+                "verb": "post"
+            }]
+        },
+        "prototype.updatePushToken": {
+            "accepts": [{
+                "arg": "body",
+                "type": "object",
+                "required": true,
+                "description": "token to be saved",
+                "http": {
+                    "source": "body"
+                }
+            }],
+            "returns": [],
+            "description": "updates a user's push token",
+            "http": [{
+                "path": "/updatePushToken",
+                "verb": "post"
+            }]
+        },
+        "prototype.deletePushToken": {
+            "accepts": [{
+                "arg": "body",
+                "type": "object",
+                "required": true,
+                "description": "token to be saved",
+                "http": {
+                    "source": "body"
+                }
+            }],
+            "returns": [],
+            "description": "updates a user's push token",
+            "http": [{
+                "path": "/deletePushToken",
+                "verb": "post"
+            }]
+        },
+        "userWithCredentials": {
+            "accepts": [{
+                "arg": "ctx",
+                "type": "object",
+                "required": true,
+                "description": "Current Context",
+                "http": {
+                    "source": "req"
+                }
+            }],
+            "returns": [{
+                "arg": "userWithCredentials",
+                "type": "object",
+                "root": true,
+                "description": "user with it's credentials"
+            }],
+            "description": "Gets an user with his credentials",
+            "http": [{
+                "path": "/withCredentials",
+                "verb": "get"
+            }]
+        },
+        "register": {
+            "accepts": [{
+                "arg": "newUser",
+                "type": "object",
+                "required": true,
+                "description": "new User object to be stored",
+                "http": {
+                    "source": "body"
+                }
+            }],
+            "returns": [{
+                "arg": "user",
+                "type": "object",
+                "root": true,
+                "description": "user in DB"
+            }],
+            "description": "registers a new user with a profile picture",
+            "http": [{
+                "path": "/register",
+                "verb": "post"
+            }]
+        },
+        "RegisterWithEmailVerification": {
+            "accepts": [{
+                "arg": "newUser",
+                "type": "object",
+                "required": true,
+                "description": "new User object to be stored",
+                "http": {
+                    "source": "body"
+                }
+            }],
+            "returns": [{
+                "arg": "user",
+                "type": "object",
+                "root": true,
+                "description": "user in DB"
+            }],
+            "description": "registers a new user and send verification email",
+            "http": [{
+                "path": "/registerWithVerification",
+                "verb": "post"
+            }]
+        },
+        "registerAdmins": {
+            "accepts": [{
+                "arg": "newUser",
+                "type": "object",
+                "required": true,
+                "description": "new  adminUser object to be stored",
+                "http": {
+                    "source": "body"
+                }
+            }],
+            "returns": [{
+                "arg": "user",
+                "type": "object",
+                "root": true,
+                "description": "user in DB"
+            }],
+            "description": "registers a new admin with a profile picture",
+            "http": [{
+                "path": "/registerAdmins",
+                "verb": "post"
+            }]
+        },
+        "testPush": {
+            "accepts": [],
+            "returns": [{
+                "arg": "testPush",
+                "type": "object",
+                "root": true,
+                "description": "testPush"
+            }],
+            "description": "testPush",
+            "http": [{
+                "path": "/testPush",
+                "verb": "get"
+            }]
+        },
+        "getRoles": {
+            "accepts": [],
+            "returns": [{
+                "arg": "roles",
+                "type": "object",
+                "root": true,
+                "description": "roles in DB"
+            }],
+            "description": "gives all the roles in db",
+            "http": [{
+                "path": "/getRoles",
+                "verb": "get"
+            }]
+        },
+        "loginBySocialMedia": {
+            "accepts": [{
+                "arg": "user",
+                "type": "object",
+                "required": true,
+                "description": "user to login",
+                "http": {
+                    "source": "body"
+                }
+            }],
+            "returns": [{
+                "arg": "user",
+                "type": "object",
+                "root": true,
+                "description": "logged user "
+            }],
+            "description": "log the user by social media token",
+            "http": [{
+                "path": "/loginBySocialMedia",
+                "verb": "post"
+            }]
+        },
+        "getAnyUsers": {
+            "accepts": [{
+                "arg": "ctx",
+                "type": "object",
+                "required": true,
+                "description": "Current Context",
+                "http": {
+                    "source": "req"
+                }
+            }],
+            "returns": [{
+                "arg": "users",
+                "type": "array",
+                "root": true,
+                "description": ""
+            }],
+            "description": "Gets Users",
+            "http": [{
+                "path": "/users",
+                "verb": "get"
+            }]
+        },
+        "changeAnyPassword": {
+            "accepts": [{
+                    "arg": "ctx",
+                    "type": "object",
+                    "required": true,
+                    "description": "Current Context",
+                    "http": {
+                        "source": "req"
+                    }
+                },
+                {
+                    "arg": "data",
+                    "type": "object",
+                    "required": true,
+                    "description": "{userId, newPassword}",
+                    "http": {
+                        "source": "body"
+                    }
+                }
+            ],
+            "returns": [{
+                "arg": "msg",
+                "type": "string",
+                "root": true,
+                "description": "Message of success"
+            }],
+            "description": "Update a user's password",
+            "http": [{
+                "path": "/updatePass",
+                "verb": "post"
+            }]
+        },
+        "prototype.updateAnyUser": {
+            "accepts": [{
+                    "arg": "ctx",
+                    "type": "object",
+                    "required": true,
+                    "description": "Current Context",
+                    "http": {
+                        "source": "req"
+                    }
+                },
+                {
+                    "arg": "updtUser",
+                    "type": "object",
+                    "required": true,
+                    "description": "any User object to be updated",
+                    "http": {
+                        "source": "body"
+                    }
+                }
+            ],
+            "returns": [{
+                "arg": "users",
+                "type": "array",
+                "root": true,
+                "description": "users"
+            }],
+            "description": "Update any user",
+            "http": [{
+                "path": "/updateUs",
+                "verb": "post"
+            }]
+        },
+        "loginIfActive": {
+            "accepts": [{
+                "arg": "credentials",
+                "type": "object",
+                "required": true,
+                "description": "{email, password}",
+                "http": {
+                    "source": "body"
+                }
+            }],
+            "returns": [{
+                "arg": "token",
+                "type": "object",
+                "root": true,
+                "description": "Token"
+            }],
+            "description": "Login to platform",
+            "http": [{
+                "path": "/login",
+                "verb": "post"
+            }]
+        },
+        "VerifyEmail": {
+            "accepts": [{
+                "arg": "code",
+                "type": "string",
+                "required": true,
+                "description": "Verification Code"
+            }],
+            "returns": [{
+                "arg": "verified",
+                "type": "boolean",
+                "root": true,
+                "description": "was verified"
+            }],
+            "description": "Login to platform",
+            "http": [{
+                "path": "/verify/:code",
+                "verb": "patch"
+            }]
+        },
+        "prototype.UpdateProfile": {
+            "accepts": [{
+                "arg": "newInformation",
+                "type": "object",
+                "required": true,
+                "description": "{email, phone, name}",
+                "http": {
+                    "source": "body"
+                }
+            }],
+            "returns": [{
+                "arg": "token",
+                "type": "object",
+                "root": true,
+                "description": "Updated information"
+            }],
+            "description": "Update Profile data",
+            "http": [{
+                "path": "/",
+                "verb": "patch"
+            }]
+        },
+        "GetFileLibrary": {
+            "accepts": [{
+                    "arg": "ctx",
+                    "type": "object",
+                    "required": true,
+                    "http": {
+                        "source": "req"
+                    }
+                },
+                {
+                    "arg": "schoolId",
+                    "type": "number",
+                    "required": true,
+                    "description": ""
+                }
+            ],
+            "returns": [{
+                "arg": "files",
+                "type": "array",
+                "root": true,
+                "description": ""
+            }],
+            "description": "",
+            "http": [{
+                "path": "/:schoolId/FileLibrary",
+                "verb": "get"
+            }]
+        },
+        "IsUsernameDuplicated": {
+            "accepts": [{
+                "arg": "username",
+                "type": "string",
+                "description": "username to search for"
+            }],
+            "returns": [{
+                "arg": "result",
+                "type": "string",
+                "root": true,
+                "description": "validation result"
+            }],
+            "description": "Verifies if a username already exists",
+            "http": [{
+                "path": "/:username/duplicated",
+                "verb": "get"
+            }]
+        },
+        "SchoolByUsuario": {
+            "accepts": [{
+                "arg": "teacherId",
+                "type": "any",
+                "required": false,
+                "description": ""
+            }],
+            "returns": [{
+                "arg": "teacher",
+                "type": "",
+                "root": true,
+                "description": ""
+            }],
+            "description": "",
+            "http": [{
+                "path": "/SchoolByUsuario",
+                "verb": "post"
+            }]
+        }
+    }
+}

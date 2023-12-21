@@ -1,0 +1,40 @@
+{
+  "name": "UploadedFiles",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "id": true
+    },
+    "URL": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "resize": {
+      "type": "boolean"
+    },
+    "uploaded": {
+      "type": "date",
+      "defaultFn": "now"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "events": {
+      "type": "hasAndBelongsToMany",
+      "model": "Event",
+      "foreignKey": "fileId",
+      "throughTable": "EventFile"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

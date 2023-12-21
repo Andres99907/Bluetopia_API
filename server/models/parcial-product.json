@@ -1,0 +1,189 @@
+{
+  "name": "ParcialProduct",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "instructions": {
+      "type": "text"
+    },
+    "isFinal": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "isActivity": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "maxCalification": {
+      "type": "number"
+    },
+    "rubric": {
+      "type": "object"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "strategy": {
+      "type": "belongsTo",
+      "model": "Strategy",
+      "foreignKey": "strategyId"
+    },
+    "type": {
+      "type": "belongsTo",
+      "model": "ParcialProductType",
+      "foreignKey": "parcialProductTypeId"
+    },
+    "event": {
+      "type": "belongsTo",
+      "model": "Event",
+      "foreignKey": "eventId"
+    },
+    "evaluationType": {
+      "type": "belongsTo",
+      "model": "EvaluationType",
+      "foreignKey": "evaluationTypeId"
+    },
+    "resources": {
+      "type": "hasMany",
+      "model": "ParcialProductFile",
+      "foreignKey": "parcialProductId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "CreateOne",
+        "CreateActivity",
+        "Update",
+        "Delete"
+      ]
+    }
+  ],
+  "methods": {
+    "CreateOne": {
+      "accepts": [
+        {
+          "arg": "parcialProduct",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "parcialProductSaved",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "post"
+        }
+      ]
+    },
+    "CreateActivity": {
+      "accepts": [
+        {
+          "arg": "parcialProduct",
+          "type": "object",
+          "required": true,
+          "description": "",
+          "http":{
+            "source":"body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "parcialProductSaved",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/activity",
+          "verb": "post"
+        }
+      ]
+    },
+    "prototype.Update": {
+      "accepts": [
+        {
+          "arg": "ctx",
+          "type": "object",
+          "required": true,
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "parcialProduct",
+          "type": "object",
+          "required": true,
+          "http": {
+            "source": "body"
+          },
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "parcialProductSaved",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "patch"
+        }
+      ]
+    },
+    "prototype.Delete": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "parcialProductSaved",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "delete"
+        }
+      ]
+    }
+  }
+}

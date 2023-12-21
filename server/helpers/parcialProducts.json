@@ -1,0 +1,278 @@
+[
+  {
+    "name": "Reporte de investigación",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Carta",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Folleto",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Guión",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Blog",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Artículo",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Reseña",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Manual",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Análisis matemático o de ingeniería",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Reporte de estudio científico o experimento",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Guía de campo",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Ensayo",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Productos de planeación",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Propuesta",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Plan de negocios",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Diseño",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Prototipo",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Estimación",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Planos",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Línea del tiempo",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Diagrama de flujo",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Borrador de maqueta",
+    "type": "Productos escritos"
+  },
+  {
+    "name": "Discurso",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Debate",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Defensa oral",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Noticiero",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Panel de discusión",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Obra o representación",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Pieza musical o danza",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Lección o clase",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Evento público",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Discurso de venta",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Museo",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Obra de teatro",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Exposición",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Documental",
+    "type": "Productos de presentación"
+  },
+  {
+    "name": "Modelo a escala",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Producto",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Máquina o dispositivo",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Vehículo",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Invento",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Instrumento científico",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Exhibición de museo",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Estructura",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Jardín",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Juguete",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Receta de cocina",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Ropa o accesorio",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Mueble",
+    "type": "Productos de construcción"
+  },
+  {
+    "name": "Grabación de audio",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Presentación de diapositivas",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Dibujo o pintura",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Diseño gráfico",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Collage o Scrapbook",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Ensayo fotográfico",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Video o animación",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Sitio web",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "App o programa",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Cómic o historia digital",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Podcast",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Revista digital",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Campaña en redes sociales",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Blogg",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Infografía",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Tik tok",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Encuestas / cuestionarios ",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Simulaciones",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Mapas / rutas ",
+    "type": "Productos tecnológicos y de medios"
+  },
+  {
+    "name": "Gráficas, informes estadísticos",
+    "type": "Productos tecnológicos y de medios"
+  }
+]
