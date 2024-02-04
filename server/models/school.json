@@ -25,6 +25,9 @@
         },
         "schoolUserId": {
             "type": "number"
+        },
+        "gradeScale": {
+            "type": "number"
         }
     },
     "validations": [],

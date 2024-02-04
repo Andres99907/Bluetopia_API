@@ -23,6 +23,10 @@
         "blutopiaPromise": {
             "type": "string",
             "required": false
+        },
+        "finalGrade": {
+            "type": "double",
+            "required": false
         }
     },
     "validations": [],

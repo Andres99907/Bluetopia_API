@@ -1,7 +1,11 @@
 {
   "restApiRoot": "/api",
   "host": "0.0.0.0",
-  "port": 8127,
+  "port": 8121,
+  "https": {
+    "key": "D:/FTP/Bluetopia_api/project/loopback/key.pem",
+    "cert": "D:/FTP/Bluetopia_api/project/loopback/cert.pem"
+  },
   "remoting": {
     "context": false,
     "rest": {
