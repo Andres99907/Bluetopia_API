@@ -7,10 +7,10 @@
     "host": "localhost",
     "port": 3306,
     "url": "",
-    "database": "bluetopia",
-    "password": "",
+    "database": "bluetopi_blutopi",
+    "password": "Pruebitas6922",
     "name": "mysqlDev",
-    "user": "root",
+    "user": "bluetopi_blutopiav8",
     "connector": "mysql"
   },
   "localFiles": {
