@@ -37,9 +37,6 @@ module.exports = function(School) {
                 School.app.models.Usuario.findOne({ where: { id: school.data.userId } }, (err, user) => {
                     if (err) return callback(err);
                     user.__data.username = school.name;
-                    console.log("School log:");
-                    console.log("school name: "+school.school.name)
-                    console.log("grade scale: "+school.school.gradeScale)
                     // user.__data.email = school.email;
                     user.save(user, (err, updated) => {
                         if (err) return callback(err);

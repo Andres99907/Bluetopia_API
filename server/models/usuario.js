@@ -81,6 +81,19 @@ module.exports = function(Usuario) {
     };
 
     Usuario.RegisterUser = function(user, userData, role, callback) {
+
+        if (userData && userData.email) {
+            Usuario.findOne({where: {email: userData.email}}, function(err, existingUser) {
+                if (err) return callback(err);
+                if (existingUser)
+                {
+                    console.log("COULD NOT REGISTER: "+existingUser);
+                    return callback("Email already exists: "+userData.email);
+                }
+                
+            });
+        }
+
         var RoleMapping = app.models.RoleMapping;
         var Role = app.models.Role;
 
@@ -108,8 +121,16 @@ module.exports = function(Usuario) {
                         if (err) callback(err);
 
                         if (userData) {
+                            
                             userData.userId = newU.id;
+
                             if (role.name == 'School') newSchool.schoolUserId = newU.id;
+
+                            // newSchool.isActive = false;
+
+                            userData.active = user.active;
+                            console.log("CREATING USER: "+userData.username+" WITH "+user.active+" STATE")
+                            
                             Usuario.app.models.School.upsert(newSchool, (err, schoolUpdate) => {
                                 if (err) callback(err);
                                 Usuario.app.models.UserData.create(userData, (err, newUserData) => {
@@ -173,7 +194,7 @@ module.exports = function(Usuario) {
      * @param {Function(Error, object)} callback
      */
     Usuario.userWithCredentials = function(ctx, callback) {
-        if (!ctx.accessToken) return callback('User not logged in!');
+        if (!ctx.accessToken) return callback('NOT LOGED IN');
 
         var userWithCredentials;
         var id = ctx.accessToken.userId;
@@ -186,7 +207,7 @@ module.exports = function(Usuario) {
             },
             include: ['data', 'school', 'student']
         }, function(error, user) {
-            if (error) return callback(error, 'Error On User');
+            if (error) return callback(error, 'LOGIN FAILED');
 
             RoleMapping.find({
                 where: {

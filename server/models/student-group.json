@@ -11,9 +11,9 @@
       "type": "string",
       "required": false
     },
-    "wasPasswordSet":{
-      "type":"boolean",
-      "default":false
+    "wasPasswordSet": {
+      "type": "boolean",
+      "default": false
     }
   },
   "validations": [],

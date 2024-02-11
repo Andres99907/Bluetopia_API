@@ -1,230 +1,242 @@
 {
-    "name": "Teacher",
-    "base": "Model",
-    "idInjection": true,
-    "options": {
-        "validateUpsert": true
+  "name": "Teacher",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
     },
-    "properties": {
-        "name": {
-            "type": "string",
-            "required": true
-        },
-        "email": {
-            "type": "string",
-            "required": true
-        },
-        "extracurricular": {
-            "type": "boolean",
-            "required": true,
-            "default": false
-        },
-        "active": {
-            "type": "boolean",
-            "required": true,
-            "default": false
-        },
-        "activationToken": {
-            "type": "string"
-        }
+    "email": {
+      "type": "string",
+      "required": true
     },
-    "validations": [],
-    "relations": {
-        "user": {
-            "type": "belongsTo",
-            "model": "Usuario",
-            "foreignKey": "userId",
-            "options": {
-                "nestRemoting": true
-            }
-        },
-        "subjects": {
-            "type": "hasAndBelongsToMany",
-            "model": "Subject",
-            "foreignKey": "teacherId",
-            "options": {
-                "nestRemoting": true
-            },
-            "throughTable": "TeacherSubject"
-        },
-        "school": {
-            "type": "belongsTo",
-            "model": "School",
-            "foreignKey": "schoolId",
-            "options": {
-                "nestRemoting": true
-            }
-        },
-        "teacherGroups": {
-            "type": "hasMany",
-            "model": "TeacherGroup",
-            "foreignKey": "teacherId",
-            "options": {
-                "nestRemoting": true
-            }
-        },
-        "strategies": {
-            "type": "hasMany",
-            "model": "TeacherTemplate",
-            "foreignKey": "teacherId",
-            "options": {
-                "nestRemoting": true
-            }
-        }
+    "extracurricular": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     },
-    "acls": [{
-            "accessType": "EXECUTE",
-            "principalType": "ROLE",
-            "principalId": "$everyone",
-            "permission": "DENY"
-        },
-        {
-            "accessType": "EXECUTE",
-            "principalType": "ROLE",
-            "principalId": "School",
-            "permission": "ALLOW",
-            "property": [
-                "AddTeachers",
-                "GetAllOfSchool",
-                "UpdateData",
-                "GetData"
-            ]
-        },
-        {
-            "accessType": "EXECUTE",
-            "principalType": "ROLE",
-            "principalId": "Teacher",
-            "permission": "ALLOW",
-            "property": [
-                "GetData",
-                "UpdateData"
-            ]
-        },
-        {
-            "accessType": "EXECUTE",
-            "principalType": "ROLE",
-            "principalId": "$everyone",
-            "permission": "ALLOW",
-            "property": [
-                "GetByActivationToken",
-                "Activate"
-            ]
-        }
-    ],
-    "methods": {
-        "AddTeachers": {
-            "accepts": [{
-                "arg": "teachers",
-                "type": "array",
-                "required": true,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "newTeachers",
-                "type": "array",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/Array",
-                "verb": "post"
-            }]
-        },
-        "GetAllOfSchool": {
-            "accepts": [{
-                "arg": "schoolId",
-                "type": "number",
-                "required": true,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "teachers",
-                "type": "array",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/OfSchool/:schoolId",
-                "verb": "get"
-            }]
-        },
-        "prototype.UpdateData": {
-            "accepts": [{
-                "arg": "teacher",
-                "type": "object",
-                "required": true,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "teacherSaved",
-                "type": "object",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/",
-                "verb": "patch"
-            }]
-        },
-        "GetByActivationToken": {
-            "accepts": [{
-                "arg": "activationToken",
-                "type": "string",
-                "required": true,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "teacher",
-                "type": "",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/ByActivationToken/:activationToken",
-                "verb": "get"
-            }]
-        },
-        "prototype.Activate": {
-            "accepts": [{
-                "arg": "password",
-                "type": "string",
-                "required": false,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "teacherSaved",
-                "type": "object",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/Activate",
-                "verb": "patch"
-            }]
-        },
-        "GetData": {
-            "accepts": [{
-                "arg": "userOrTeacherId",
-                "type": "number",
-                "required": true,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "teacher",
-                "type": "",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/:userOrTeacherId/Data",
-                "verb": "get"
-            }]
-        }
+    "active": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "activationToken": {
+      "type": "string"
     }
+  },
+  "validations": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": "userId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "subjects": {
+      "type": "hasAndBelongsToMany",
+      "model": "Subject",
+      "foreignKey": "teacherId",
+      "options": {
+        "nestRemoting": true
+      },
+      "throughTable": "TeacherSubject"
+    },
+    "school": {
+      "type": "belongsTo",
+      "model": "School",
+      "foreignKey": "schoolId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "teacherGroups": {
+      "type": "hasMany",
+      "model": "TeacherGroup",
+      "foreignKey": "teacherId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "strategies": {
+      "type": "hasMany",
+      "model": "TeacherTemplate",
+      "foreignKey": "teacherId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "School",
+      "permission": "ALLOW",
+      "property": [
+        "AddTeachers",
+        "GetAllOfSchool",
+        "UpdateData",
+        "GetData"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "Teacher",
+      "permission": "ALLOW",
+      "property": [
+        "GetData",
+        "UpdateData"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": [
+        "GetByActivationToken",
+        "Activate"
+      ]
+    }
+  ],
+  "methods": {
+    "prototype.UpdateData": {
+      "accepts": [
+        {
+          "arg": "teacher",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "teacherSaved",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "patch"
+        }
+      ]
+    },
+    "GetAllOfSchool": {
+      "accepts": [
+        {
+          "arg": "schoolId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "teachers",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/OfSchool/:schoolId",
+          "verb": "get"
+        }
+      ]
+    },
+    "AddTeachers": {
+      "accepts": [
+        {
+          "arg": "teachers",
+          "type": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "newTeachers",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/Array",
+          "verb": "post"
+        }
+      ]
+    },
+    "GetByActivationToken": {
+      "accepts": [
+        {
+          "arg": "activationToken",
+          "type": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "teacher",
+          "type": "",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/ByActivationToken/:activationToken",
+          "verb": "get"
+        }
+      ]
+    },
+    "prototype.Activate": {
+      "accepts": [
+        {
+          "arg": "password",
+          "type": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "teacherSaved",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/Activate",
+          "verb": "patch"
+        }
+      ]
+    }
+  }
 }

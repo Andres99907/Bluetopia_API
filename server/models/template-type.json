@@ -46,24 +46,6 @@
     }
   ],
   "methods": {
-    "GetAll": {
-      "accepts": [],
-      "returns": [
-        {
-          "arg": "templateTypes",
-          "type": "array",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/",
-          "verb": "get"
-        }
-      ]
-    },
     "GetAllWithTemplates": {
       "accepts": [],
       "returns": [
@@ -78,31 +60,6 @@
       "http": [
         {
           "path": "/WithTemplates",
-          "verb": "get"
-        }
-      ]
-    },
-    "GetOne": {
-      "accepts": [
-        {
-          "arg": "templateTypeId",
-          "type": "number",
-          "required": true,
-          "description": ""
-        }
-      ],
-      "returns": [
-        {
-          "arg": "templateTypes",
-          "type": "array",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/:templateTypeId/WithTemplates",
           "verb": "get"
         }
       ]

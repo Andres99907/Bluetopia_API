@@ -151,59 +151,6 @@
     }
   ],
   "methods": {
-    "CreateOne": {
-      "accepts": [
-        {
-          "arg": "strategy",
-          "type": "object",
-          "required": true,
-          "description": ""
-        }
-      ],
-      "returns": [
-        {
-          "arg": "newTeachers",
-          "type": "array",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/",
-          "verb": "post"
-        }
-      ]
-    },
-    "prototype.CreateBasedOnAnother": {
-      "accepts": [
-        {
-          "arg": "ctx",
-          "type": "object",
-          "required": true,
-          "description": "",
-          "http": {
-            "source": "req"
-          }
-        }
-      ],
-      "returns": [
-        {
-          "arg": "newTeachers",
-          "type": "array",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/Clone",
-          "verb": "post"
-        }
-      ]
-    },
     "prototype.Update": {
       "accepts": [
         {
@@ -239,18 +186,39 @@
         }
       ]
     },
-    "GetData": {
+    "prototype.Delete": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "deleted",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "delete"
+        }
+      ]
+    },
+    "prototype.CreateBasedOnAnother": {
       "accepts": [
         {
-          "arg": "strategyId",
-          "type": "number",
+          "arg": "ctx",
+          "type": "object",
           "required": true,
-          "description": ""
+          "description": "",
+          "http": {
+            "source": "req"
+          }
         }
       ],
       "returns": [
         {
-          "arg": "strategy",
+          "arg": "newTeachers",
           "type": "array",
           "root": true,
           "description": ""
@@ -259,8 +227,8 @@
       "description": "",
       "http": [
         {
-          "path": "/:strategyId",
-          "verb": "get"
+          "path": "/Clone",
+          "verb": "post"
         }
       ]
     },
@@ -278,105 +246,6 @@
       "http": [
         {
           "path": "/Activities",
-          "verb": "get"
-        }
-      ]
-    },
-    "GetAllOfSchool": {
-      "accepts": [
-        {
-          "arg": "schoolId",
-          "type": "number",
-          "required": true
-        },
-        {
-          "arg": "gradeId",
-          "type": "number",
-          "required": false
-        },
-        {
-          "arg": "groupId",
-          "type": "number",
-          "required": false
-        },
-        {
-          "arg": "templateId",
-          "type": "number",
-          "required": false
-        },
-        {
-          "arg": "statuses",
-          "type": "array",
-          "required": false
-        }
-      ],
-      "returns": [
-        {
-          "arg": "strategies",
-          "type": "array",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/OfSchool/:schoolId",
-          "verb": "get"
-        },
-        {
-          "path": "/OfSchool/:schoolId/FilteredBy/Grade/:gradeId/Group/:groupId/Template/:templateId/Statuses/:statuses",
-          "verb": "get"
-        }
-      ]
-    },
-    "GetAllOfTeacher": {
-      "accepts": [
-        {
-          "arg": "ctx",
-          "type": "object",
-          "required": true,
-          "http": {
-            "source": "req"
-          }
-        },
-        {
-          "arg": "gradeId",
-          "type": "number",
-          "required": false
-        },
-        {
-          "arg": "groupId",
-          "type": "number",
-          "required": false
-        },
-        {
-          "arg": "templateId",
-          "type": "number",
-          "required": false
-        },
-        {
-          "arg": "statuses",
-          "type": "array",
-          "required": false
-        }
-      ],
-      "returns": [
-        {
-          "arg": "strategies",
-          "type": "array",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/",
-          "verb": "get"
-        },
-        {
-          "path": "/FilteredBy/Grade/:gradeId/Group/:groupId/Template/:templateId/Statuses/:statuses",
           "verb": "get"
         }
       ]
@@ -412,24 +281,6 @@
         {
           "path": "/:strategyId/Students",
           "verb": "get"
-        }
-      ]
-    },
-    "prototype.Delete": {
-      "accepts": [],
-      "returns": [
-        {
-          "arg": "deleted",
-          "type": "object",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/",
-          "verb": "delete"
         }
       ]
     },

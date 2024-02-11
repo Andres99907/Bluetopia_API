@@ -1,14 +1,16 @@
 {
-  "name": "Group",
-  "base": "Model",
+  "name": "AAA",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string",
-      "required": true
+    "col1": {
+      "type": "any"
+    },
+    "col2": {
+      "type": "date"
     }
   },
   "validations": [],

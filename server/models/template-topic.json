@@ -67,43 +67,6 @@
           "verb": "post"
         }
       ]
-    },
-    "GetAll": {
-      "accepts": [
-        {
-          "arg": "ctx",
-          "type": "object",
-          "required": true,
-          "description": "",
-          "http": {
-            "source": "req"
-          }
-        },
-        {
-          "arg": "schoolId",
-          "type": "number",
-          "required": true
-        }
-      ],
-      "returns": [
-        {
-          "arg": "templateTopics",
-          "type": "array",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/",
-          "verb": "get"
-        },
-        {
-          "path": "/OfSchool/:schoolId",
-          "verb": "get"
-        }
-      ]
     }
   }
 }

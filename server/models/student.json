@@ -1,389 +1,352 @@
 {
-    "name": "Student",
-    "base": "Model",
-    "idInjection": true,
-    "options": {
-        "validateUpsert": true
+  "name": "Student",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
     },
-    "properties": {
-        "name": {
-            "type": "string",
-            "required": true
-        },
-        "fatherLastname": {
-            "type": "string"
-        },
-        "motherLastname": {
-            "type": "string"
-        },
-        "registerNumber": {
-            "type": "string",
-            "required": true
-        },
-        "blutopiaPromise": {
-            "type": "string",
-            "required": false
-        },
-        "finalGrade": {
-            "type": "double",
-            "required": false
-        }
+    "fatherLastname": {
+      "type": "string"
     },
-    "validations": [],
-    "relations": {
-        "school": {
-            "type": "belongsTo",
-            "model": "School",
-            "foreignKey": "schoolId",
-            "options": {
-                "nestRemoting": true
-            }
-        },
-        "parentUser": {
-            "type": "belongsTo",
-            "model": "Usuario",
-            "foreignKey": "parentUserId",
-            "options": {
-                "nestRemoting": true
-            }
-        },
-        "studentGroup": {
-            "type": "hasOne",
-            "model": "StudentGroup",
-            "foreignKey": "studentId",
-            "options": {
-                "nestRemoting": true
-            }
-        },
-        "teamsStudents": {
-            "type": "hasMany",
-            "model": "TeamStudent",
-            "foreignKey": "studentId",
-            "options": {
-                "nestRemoting": true
-            }
-        },
-        "evaluations": {
-            "type": "hasMany",
-            "model": "Evaluation",
-            "foreignKey": "studentId",
-            "options": {
-                "nestRemoting": true
-            }
-        }
+    "motherLastname": {
+      "type": "string"
     },
-    "acls": [{
-            "accessType": "EXECUTE",
-            "principalType": "ROLE",
-            "principalId": "$everyone",
-            "permission": "DENY"
-        },
-        {
-            "accessType": "EXECUTE",
-            "principalType": "ROLE",
-            "principalId": "$authenticated",
-            "permission": "ALLOW",
-            "property": [
-                "GetData",
-                "GetDataWithEvaluations",
-                "GetEvents",
-                "GetStudentByUser",
-                "EditStudent"
-
-
-            ]
-        },
-        {
-            "accessType": "EXECUTE",
-            "principalType": "ROLE",
-            "principalId": "School",
-            "permission": "ALLOW",
-            "property": [
-                "AddStudent",
-                "AddStudents",
-                "GetAllOfSchool",
-                "EvaluateParcialProduct"
-            ]
-        },
-        {
-            "accessType": "EXECUTE",
-            "principalType": "ROLE",
-            "principalId": "Teacher",
-            "permission": "ALLOW",
-            "property": [
-                "AddStudent",
-                "AddStudents",
-                "GetAllOfTeacher",
-                "EvaluateParcialProduct"
-            ]
-        }
-    ],
-    "methods": {
-        "AddStudent": {
-            "accepts": [{
-                "arg": "student",
-                "type": "object",
-                "required": true,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "newStudent",
-                "type": "object",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/",
-                "verb": "post"
-            }]
-        },
-        "AddStudents": {
-            "accepts": [{
-                "arg": "students",
-                "type": "array",
-                "required": true,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "newStudents",
-                "type": "array",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/Array",
-                "verb": "post"
-            }]
-        },
-        "GetAllOfSchool": {
-            "accepts": [{
-                    "arg": "schoolId",
-                    "type": "number",
-                    "required": true,
-                    "description": ""
-                },
-                {
-                    "arg": "gradeId",
-                    "type": "number",
-                    "required": false,
-                    "description": ""
-                },
-                {
-                    "arg": "groupId",
-                    "type": "number",
-                    "required": false,
-                    "description": ""
-                },
-                {
-                    "arg": "searchText",
-                    "type": "string",
-                    "required": false,
-                    "description": ""
-                }
-            ],
-            "returns": [{
-                "arg": "students",
-                "type": "array",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                    "path": "/OfSchool/:schoolId",
-                    "verb": "get"
-                },
-                {
-                    "path": "/OfSchool/:schoolId/FilteredBy/Grade/:gradeId/Group/:groupId",
-                    "verb": "get"
-                },
-                {
-                    "path": "/OfSchool/:schoolId/FilteredBy/Text/:searchText/Grade/:gradeId/Group/:groupId",
-                    "verb": "get"
-                }
-            ]
-        },
-        "GetAllOfTeacher": {
-            "accepts": [{
-                    "arg": "teacherUserId",
-                    "type": "number",
-                    "required": true,
-                    "description": ""
-                },
-                {
-                    "arg": "gradeId",
-                    "type": "number",
-                    "required": false,
-                    "description": ""
-                },
-                {
-                    "arg": "groupId",
-                    "type": "number",
-                    "required": false,
-                    "description": ""
-                },
-                {
-                    "arg": "searchText",
-                    "type": "string",
-                    "required": false,
-                    "description": ""
-                }
-            ],
-            "returns": [{
-                "arg": "students",
-                "type": "array",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                    "path": "/OfTeacher/:teacherUserId",
-                    "verb": "get"
-                },
-                {
-                    "path": "/OfTeacher/:teacherUserId/FilteredBy/Grade/:gradeId/Group/:groupId",
-                    "verb": "get"
-                },
-                {
-                    "path": "/OfTeacher/:teacherUserId/FilteredBy/Text/:searchText/Grade/:gradeId/Group/:groupId",
-                    "verb": "get"
-                }
-            ]
-        },
-        "prototype.GetData": {
-            "accepts": [],
-            "returns": [{
-                "arg": "student",
-                "type": "object",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/",
-                "verb": "get"
-            }]
-        },
-        "prototype.GetDataWithEvaluations": {
-            "accepts": [{
-                "arg": "parcialProductId",
-                "type": "number",
-                "required": true,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "student",
-                "type": "object",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/WithEvaluationsOf/ParcialProduct/:parcialProductId",
-                "verb": "get"
-            }]
-        },
-        "GetDataWithEvaluationsOfStrategy": {
-            "accepts": [
-                {
-                    "arg": "studentUserId",
-                    "type": "number",
-                    "required": true
-                },
-                {
-                    "arg": "strategyId",
-                    "type": "number",
-                    "required": true
-                }
-            ],
-            "returns": [{
-                "arg": "student",
-                "type": "object",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/:studentUserId/WithEvaluationsOf/Strategy/:strategyId",
-                "verb": "get"
-            }]
-        },
-        "prototype.EvaluateParcialProduct": {
-            "accepts": [{
-                "arg": "evaluation",
-                "type": "object",
-                "required": true,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "student",
-                "type": "object",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/Evaluate/ParcialProduct/:parcialProductId",
-                "verb": "patch"
-            }]
-        },
-        "GetEvents": {
-            "accepts": [{
-                "arg": "studentUserId",
-                "type": "number",
-                "required": true,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "events",
-                "type": "array",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/:studentUserId/Events",
-                "verb": "get"
-            }]
-        },
-        "GetStudentByUser": {
-            "accepts": [{
-                "arg": "userId",
-                "type": "number",
-                "required": true,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "students",
-                "type": "object",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/GetStudentByUser",
-                "verb": "get"
-            }]
-        },
-        "prototype.EditStudent": {
-            "accepts": [{
-                "arg": "newStudent",
-                "type": "any",
-                "root": true,
-                "description": ""
-            }],
-            "returns": [{
-                "arg": "updateStudent",
-                "type": "any",
-                "root": true,
-                "description": ""
-            }],
-            "description": "",
-            "http": [{
-                "path": "/save",
-                "verb": "post"
-            }]
-        }
+    "registerNumber": {
+      "type": "string",
+      "required": true
+    },
+    "blutopiaPromise": {
+      "type": "string",
+      "required": false
+    },
+    "finalGrade": {
+      "type": "double",
+      "required": false
     }
+  },
+  "validations": [],
+  "relations": {
+    "school": {
+      "type": "belongsTo",
+      "model": "School",
+      "foreignKey": "schoolId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "parentUser": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": "parentUserId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "studentGroup": {
+      "type": "hasOne",
+      "model": "StudentGroup",
+      "foreignKey": "studentId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "teamsStudents": {
+      "type": "hasMany",
+      "model": "TeamStudent",
+      "foreignKey": "studentId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "evaluations": {
+      "type": "hasMany",
+      "model": "Evaluation",
+      "foreignKey": "studentId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "GetData",
+        "GetDataWithEvaluations",
+        "GetEvents",
+        "GetStudentByUser",
+        "EditStudent"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "School",
+      "permission": "ALLOW",
+      "property": [
+        "AddStudent",
+        "AddStudents",
+        "GetAllOfSchool",
+        "EvaluateParcialProduct"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "Teacher",
+      "permission": "ALLOW",
+      "property": [
+        "AddStudent",
+        "AddStudents",
+        "GetAllOfTeacher",
+        "EvaluateParcialProduct"
+      ]
+    }
+  ],
+  "methods": {
+    "GetAllOfTeacher": {
+      "accepts": [
+        {
+          "arg": "teacherUserId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        },
+        {
+          "arg": "gradeId",
+          "type": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "arg": "groupId",
+          "type": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "arg": "searchText",
+          "type": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "students",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/OfTeacher/:teacherUserId",
+          "verb": "get"
+        },
+        {
+          "path": "/OfTeacher/:teacherUserId/FilteredBy/Grade/:gradeId/Group/:groupId",
+          "verb": "get"
+        },
+        {
+          "path": "/OfTeacher/:teacherUserId/FilteredBy/Text/:searchText/Grade/:gradeId/Group/:groupId",
+          "verb": "get"
+        }
+      ]
+    },
+    "AddStudent": {
+      "accepts": [
+        {
+          "arg": "student",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "newStudent",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "post"
+        }
+      ]
+    },
+    "AddStudents": {
+      "accepts": [
+        {
+          "arg": "students",
+          "type": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "newStudents",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/Array",
+          "verb": "post"
+        }
+      ]
+    },
+    "prototype.GetDataWithEvaluations": {
+      "accepts": [
+        {
+          "arg": "parcialProductId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "student",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/WithEvaluationsOf/ParcialProduct/:parcialProductId",
+          "verb": "get"
+        }
+      ]
+    },
+    "GetDataWithEvaluationsOfStrategy": {
+      "accepts": [
+        {
+          "arg": "studentUserId",
+          "type": "number",
+          "required": true
+        },
+        {
+          "arg": "strategyId",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "returns": [
+        {
+          "arg": "student",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/:studentUserId/WithEvaluationsOf/Strategy/:strategyId",
+          "verb": "get"
+        }
+      ]
+    },
+    "GetEvents": {
+      "accepts": [
+        {
+          "arg": "studentUserId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "events",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/:studentUserId/Events",
+          "verb": "get"
+        }
+      ]
+    },
+    "GetStudentByUser": {
+      "accepts": [
+        {
+          "arg": "userId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "students",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/GetStudentByUser",
+          "verb": "get"
+        }
+      ]
+    },
+    "prototype.EditStudent": {
+      "accepts": [
+        {
+          "arg": "newStudent",
+          "type": "any",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "updateStudent",
+          "type": "any",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/save",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }

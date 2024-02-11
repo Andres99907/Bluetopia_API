@@ -12,7 +12,7 @@
     },
     "grade": {
       "type": "number"
-  }
+    }
   },
   "validations": [],
   "relations": {
@@ -40,52 +40,5 @@
       ]
     }
   ],
-  "methods": {
-    "GetAll": {
-      "accepts": [],
-      "returns": [
-        {
-          "arg": "subjects",
-          "type": "array",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/",
-          "verb": "get"
-        }
-      ]
-    },
-    "CreateOne": {
-      "accepts": [
-        {
-          "arg": "goal",
-          "type": "object",
-          "required": true,
-          "description": "",
-          "http":{
-            "source":"body"
-          }
-        }
-      ],
-      "returns": [
-        {
-          "arg": "goals",
-          "type": "array",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/",
-          "verb": "post"
-        }
-      ]
-    }
-  }
+  "methods": {}
 }
