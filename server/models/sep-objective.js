@@ -18,6 +18,7 @@ module.exports = function(SepObjective) {
     SepObjective.GetAll = function(callback) {
         SepObjective.find((err, sepObjectives) => {
             if(err) return callback(err);
+            console.log(sepObjectives);
             return callback(null, sepObjectives);
         });
     }

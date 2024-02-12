@@ -125,9 +125,6 @@ module.exports = function(Usuario) {
                             userData.userId = newU.id;
 
                             if (role.name == 'School') newSchool.schoolUserId = newU.id;
-
-                            // newSchool.isActive = false;
-
                             userData.active = user.active;
                             console.log("CREATING USER: "+userData.username+" WITH "+user.active+" STATE")
                             

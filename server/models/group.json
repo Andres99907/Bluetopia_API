@@ -14,5 +14,49 @@
   "validations": [],
   "relations": {},
   "acls": [],
-  "methods": {}
+  "methods": {
+    "CreateOne": {
+      "accepts": [
+        {
+          "arg": "group",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "newGroup",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "post"
+        }
+      ]
+    },
+    "GetAll": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "groups",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

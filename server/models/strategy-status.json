@@ -20,5 +20,24 @@
   "validations": [],
   "relations": {},
   "acls": [],
-  "methods": {}
+  "methods": {
+    "GetAll": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "statuses",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

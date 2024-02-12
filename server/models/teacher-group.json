@@ -1,125 +1,107 @@
 {
-  "name": "TeacherGroup",
-  "base": "Model",
-  "idInjection": true,
-  "options": {
-    "validateUpsert": true
-  },
-  "properties": {
-    "groupId": {
-      "type": "number"
+    "name": "TeacherGroup",
+    "base": "Model",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
     },
-    "teacherId": {
-      "type": "number"
+    "properties": {
+        "groupId": {
+            "type": "number"
+        },
+        "teacherId": {
+            "type": "number"
+        },
+        "wasPasswordSet": {
+            "type": "boolean",
+            "default": false
+        },
+        "masterKey": {
+            "type": "string"
+        }
     },
-    "wasPasswordSet": {
-      "type": "boolean",
-      "default": false
+    "validations": [],
+    "relations": {
+        "teacher": {
+            "type": "belongsTo",
+            "model": "Teacher",
+            "foreignKey": "teacherId"
+        },
+        "group": {
+            "type": "belongsTo",
+            "model": "Group",
+            "foreignKey": "groupId"
+        },
+        "grade": {
+            "type": "belongsTo",
+            "model": "Grade",
+            "foreignKey": "gradeId"
+        }
     },
-    "masterKey": {
-      "type": "string"
+    "acls": [],
+    "methods": {
+        "GetGroupsByTeacher": {
+            "accepts": [{
+                "arg": "teacher",
+                "type": "string",
+                "required": true,
+                "description": ""
+            }],
+            "returns": [{
+                "arg": "groups",
+                "type": "array",
+                "root": true,
+                "description": ""
+            }],
+            "description": "",
+            "http": [{
+                "path": "/of/:teacher",
+                "verb": "get"
+            }]
+        },
+        "FindMasterKey": {
+            "accepts": [{
+                "arg": "newKey",
+                "type": "object",
+                "required": true,
+                "description": "",
+                "http": {
+                    "source": "body"
+                }
+            }],
+            "returns": [{
+                "arg": "groups",
+                "type": "array",
+                "root": true,
+                "description": ""
+            }],
+            "description": "",
+            "http": [{
+                "path": "/FindMasterKey",
+                "verb": "post"
+            }]
+        },
+        "SetMasterKey": {
+            "accepts": [{
+                "arg": "newKey",
+                "type": "object",
+                "required": true,
+                "description": "",
+                "http": {
+                    "source": "body"
+                }
+            }],
+            "returns": [{
+                "arg": "groups",
+                "type": "array",
+                "root": true,
+                "description": ""
+            }],
+            "description": "",
+            "http": [{
+                "path": "/setKey",
+                "verb": "post"
+            }]
+        }
     }
-  },
-  "validations": [],
-  "relations": {
-    "teacher": {
-      "type": "belongsTo",
-      "model": "Teacher",
-      "foreignKey": "teacherId"
-    },
-    "group": {
-      "type": "belongsTo",
-      "model": "Group",
-      "foreignKey": "groupId"
-    },
-    "grade": {
-      "type": "belongsTo",
-      "model": "Grade",
-      "foreignKey": "gradeId"
-    }
-  },
-  "acls": [],
-  "methods": {
-    "GetGroupsByTeacher": {
-      "accepts": [
-        {
-          "arg": "teacher",
-          "type": "string",
-          "required": true,
-          "description": ""
-        }
-      ],
-      "returns": [
-        {
-          "arg": "groups",
-          "type": "array",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/of/:teacher",
-          "verb": "get"
-        }
-      ]
-    },
-    "FindMasterKey": {
-      "accepts": [
-        {
-          "arg": "newKey",
-          "type": "object",
-          "required": true,
-          "description": "",
-          "http": {
-            "source": "body"
-          }
-        }
-      ],
-      "returns": [
-        {
-          "arg": "groups",
-          "type": "array",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/FindMasterKey",
-          "verb": "post"
-        }
-      ]
-    },
-    "SetMasterKey": {
-      "accepts": [
-        {
-          "arg": "newKey",
-          "type": "object",
-          "required": true,
-          "description": "",
-          "http": {
-            "source": "body"
-          }
-        }
-      ],
-      "returns": [
-        {
-          "arg": "groups",
-          "type": "array",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/setKey",
-          "verb": "post"
-        }
-      ]
-    }
-  }
 }

@@ -64,6 +64,90 @@
     }
   ],
   "methods": {
+    "CreateOne": {
+      "accepts": [
+        {
+          "arg": "event",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "newEvent",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "post"
+        }
+      ]
+    },
+    "Update": {
+      "accepts": [
+        {
+          "arg": "ctx",
+          "type": "object",
+          "required": true,
+          "description": "",
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "event",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "newEvent",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "patch"
+        }
+      ]
+    },
+    "Delete": {
+      "accepts": [
+        {
+          "arg": "eventId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "newEvent",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/:eventId",
+          "verb": "delete"
+        }
+      ]
+    },
     "GetAllOfStrategy": {
       "accepts": [
         {
@@ -85,6 +169,30 @@
       "http": [
         {
           "path": "/OfStrategy/:strategyId",
+          "verb": "get"
+        }
+      ]
+    },
+    "GetData": {
+      "accepts": [
+        {
+          "arg": "eventId",
+          "type": "number",
+          "required": true
+        }
+      ],
+      "returns": [
+        {
+          "arg": "event",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/:eventId",
           "verb": "get"
         }
       ]

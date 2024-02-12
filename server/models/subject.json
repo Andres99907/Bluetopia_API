@@ -47,6 +47,24 @@
     }
   ],
   "methods": {
+    "GetAll": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "subjects",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "get"
+        }
+      ]
+    },
     "CreateOneWithoutRepeat": {
       "accepts": [
         {

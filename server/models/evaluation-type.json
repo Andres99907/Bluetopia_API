@@ -34,5 +34,34 @@
       ]
     }
   ],
-  "methods": {}
+  "methods": {
+    "GetAll": {
+      "accepts": [
+        {
+          "arg": "ctx",
+          "type": "object",
+          "required": true,
+          "description": "",
+          "http": {
+            "source": "req"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "parcialProductTypes",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

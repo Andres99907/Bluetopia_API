@@ -12,7 +12,7 @@
     },
     "description": {
       "type": "string",
-      "default": ""
+      "default":""
     }
   },
   "validations": [],
@@ -41,5 +41,49 @@
       ]
     }
   ],
-  "methods": {}
+  "methods": {
+    "CreateOne": {
+      "accepts": [
+        {
+          "arg": "eventType",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "eventType",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "post"
+        }
+      ]
+    },
+    "GetAll": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "eventTypes",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

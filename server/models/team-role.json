@@ -20,5 +20,49 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "CreateOne": {
+      "accepts": [
+        {
+          "arg": "role",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "teamRoles",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "post"
+        }
+      ]
+    },
+    "GetAll": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "teamRoles",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

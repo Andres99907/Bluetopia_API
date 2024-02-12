@@ -64,60 +64,6 @@
     }
   ],
   "methods": {
-    "prototype.GetData": {
-      "accepts": [
-        {
-          "arg": "parcialProductId",
-          "type": "number",
-          "required": true,
-          "description": ""
-        }
-      ],
-      "returns": [
-        {
-          "arg": "evaluation",
-          "type": "object",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/WithEvaluationsOf/ParcialProduct/:parcialProductId",
-          "verb": "get"
-        },
-        {
-          "path": "/:teamId",
-          "verb": "get"
-        }
-      ]
-    },
-    "prototype.EvaluateParcialProduct": {
-      "accepts": [
-        {
-          "arg": "evaluation",
-          "type": "object",
-          "required": true,
-          "description": ""
-        }
-      ],
-      "returns": [
-        {
-          "arg": "evaluation",
-          "type": "object",
-          "root": true,
-          "description": ""
-        }
-      ],
-      "description": "",
-      "http": [
-        {
-          "path": "/Evaluate/ParcialProduct/:parcialProductId",
-          "verb": "patch"
-        }
-      ]
-    },
     "AddTeams": {
       "accepts": [
         {
@@ -201,6 +147,60 @@
       "http": [
         {
           "path": "/MemebersRoles",
+          "verb": "patch"
+        }
+      ]
+    },
+    "prototype.GetData": {
+      "accepts": [
+        {
+          "arg": "parcialProductId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "evaluation",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/WithEvaluationsOf/ParcialProduct/:parcialProductId",
+          "verb": "get"
+        },
+        {
+          "path": "/:teamId",
+          "verb": "get"
+        }
+      ]
+    },
+    "prototype.EvaluateParcialProduct": {
+      "accepts": [
+        {
+          "arg": "evaluation",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "evaluation",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/Evaluate/ParcialProduct/:parcialProductId",
           "verb": "patch"
         }
       ]

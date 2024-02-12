@@ -78,6 +78,31 @@
     }
   ],
   "methods": {
+    "CreateOne": {
+      "accepts": [
+        {
+          "arg": "parcialProduct",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "parcialProductSaved",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "post"
+        }
+      ]
+    },
     "CreateActivity": {
       "accepts": [
         {
@@ -85,8 +110,8 @@
           "type": "object",
           "required": true,
           "description": "",
-          "http": {
-            "source": "body"
+          "http":{
+            "source":"body"
           }
         }
       ],
@@ -103,6 +128,60 @@
         {
           "path": "/activity",
           "verb": "post"
+        }
+      ]
+    },
+    "prototype.Update": {
+      "accepts": [
+        {
+          "arg": "ctx",
+          "type": "object",
+          "required": true,
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "parcialProduct",
+          "type": "object",
+          "required": true,
+          "http": {
+            "source": "body"
+          },
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "parcialProductSaved",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "patch"
+        }
+      ]
+    },
+    "prototype.Delete": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "parcialProductSaved",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "delete"
         }
       ]
     }
