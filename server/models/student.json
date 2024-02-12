@@ -27,6 +27,10 @@
         "finalGrade": {
             "type": "double",
             "required": false
+        },
+        "registered": {
+            "type": "boolean",
+            "default": false
         }
     },
     "validations": [],
