@@ -571,7 +571,7 @@ module.exports = function(Usuario) {
             if (err) return callback(err);
 
             if (!userFound) {
-                return callback('Usuario no registrado');
+                return callback('USER_NOT_REGISTERED');
             } else {
                 if (userFound.active == null) {
                     userFound.active = true;
@@ -579,9 +579,29 @@ module.exports = function(Usuario) {
                         if (err) return callback(err);
                     });
                 }
-                if (userFound.active == false) {
-                    return callback('Error con la cuenta. Contacta al administrador');
-                }
+
+                const rolefilter = {
+                    where: {
+                        principalId: userFound.id
+                    }
+                  };
+
+                // Todo esto pasará si el usuario está inactivo
+                if (userFound.active == false)
+                Usuario.app.models.RoleMapping.findOne(rolefilter, function(err, instance) {
+                    if (err) {
+                        // Usuario sin rol
+                        return callback('ROLE_NULL');
+                    }
+                    else if (instance.roleId != 4)
+                        // Si es cualquier tipo de usuario inactivo
+                        return callback('USER_INACTIVE');
+                    else if (instance.roleId == 4) 
+                        // Si es escuela inactiva
+                        return callback('SCHOOL_INACTIVE');
+                  });
+                //
+                
             }
 
             if (!userFound.email) {
@@ -1026,5 +1046,5 @@ module.exports = function(Usuario) {
         })
     }
 
-
+    
 };

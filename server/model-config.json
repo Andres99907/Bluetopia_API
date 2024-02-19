@@ -163,6 +163,7 @@
           "GetEvents": true,
           "prototype.EditStudent": true,
           "GetStudentByUser": true,
+		  "GetStudentById":true,
           "GetDataWithEvaluationsOfStrategy": true
         }
       }
@@ -342,7 +343,8 @@
           "prototype.Delete": true,
           "GetSuggested": true,
           "ResetTeams": true,
-          "GetAllOfStudent": true
+          "GetAllOfStudent": true,
+		  "GetAllOfStudent2": true
         }
       }
     }
@@ -357,7 +359,8 @@
           "CreateOne": true,
           "CreateActivity": true,
           "prototype.Update": true,
-          "prototype.Delete": true
+          "prototype.Delete": true,
+		  "GetByStrategyId": true
         }
       }
     }

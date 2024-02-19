@@ -144,7 +144,8 @@
                 "VerifyEmail",
                 "RegisterUser",
                 "IsUsernameDuplicated",
-                "SchoolByUsuario"
+                "SchoolByUsuario",
+                "GetBoolAccess"
             ]
         },
         {

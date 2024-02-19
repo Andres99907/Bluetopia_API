@@ -30,7 +30,7 @@
         },
         "registered": {
             "type": "boolean",
-            "default": false
+            "default": true
         }
     },
     "validations": [],
@@ -92,6 +92,7 @@
                 "GetDataWithEvaluations",
                 "GetEvents",
                 "GetStudentByUser",
+                "GetStudentById",
                 "EditStudent"
 
 
@@ -367,6 +368,25 @@
             "description": "",
             "http": [{
                 "path": "/GetStudentByUser",
+                "verb": "get"
+            }]
+        },
+        "GetStudentById": {
+            "accepts": [{
+                "arg": "id",
+                "type": "number",
+                "required": true,
+                "description": ""
+            }],
+            "returns": [{
+                "arg": "students",
+                "type": "object",
+                "root": true,
+                "description": ""
+            }],
+            "description": "",
+            "http": [{
+                "path": "/GetStudentById",
                 "verb": "get"
             }]
         },

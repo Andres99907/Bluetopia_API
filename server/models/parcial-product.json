@@ -75,7 +75,16 @@
         "Update",
         "Delete"
       ]
-    }
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "Teacher",
+      "permission": "ALLOW",
+      "property": [
+          "GetByStrategyId"
+      ]
+  }
   ],
   "methods": {
     "CreateOne": {
@@ -184,6 +193,25 @@
           "verb": "delete"
         }
       ]
-    }
+    },
+    "GetByStrategyId": {
+      "accepts": [{
+          "arg": "id",
+          "type": "number",
+          "required": true,
+          "description": ""
+      }],
+      "returns": [{
+          "arg": "products",
+          "type": "object",
+          "root": true,
+          "description": ""
+      }],
+      "description": "",
+      "http": [{
+          "path": "/GetByStrategyId",
+          "verb": "get"
+      }]
+  }
   }
 }

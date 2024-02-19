@@ -301,4 +301,26 @@ module.exports = function(Strategy) {
         });
     }
 
+    Strategy.GetAllOfStudent2 = function(id, callback) {
+        console.log("THIS ID IS:"+id);
+        Strategy.app.models.Student.findOne({where: {id}, include: 'studentGroup'}, (err, student) => {
+            if(err) return callback(err);
+
+            Strategy.app.models.StrategyGroup.find({
+                where: {
+                    gradeId: student.studentGroup().gradeId,
+                    groupId: student.studentGroup().groupId,
+                    schoolId: student.studentGroup().schoolId,
+                },
+                include: 'strategy'
+            }, (err, strategyGroups) => {
+                if(err) return callback(err);
+
+                let strategies = strategyGroups.map(strategyGroup => strategyGroup.strategy());
+
+                return callback(null, strategies);
+            });
+        });
+    }
+
 };

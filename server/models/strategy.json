@@ -146,7 +146,8 @@
         "Delete",
         "GetSuggested",
         "ResetTeams",
-        "GetAllOfStudent"
+        "GetAllOfStudent",
+        "GetAllOfStudent2"
       ]
     }
   ],
@@ -509,6 +510,29 @@
       "http": [
         {
           "path": "/OfStudent",
+          "verb": "get"
+        }
+      ]
+    },
+    "GetAllOfStudent2": {
+      "accepts": [{
+        "arg": "id",
+        "type": "number",
+        "required": true,
+        "description": ""
+       }],
+      "returns": [
+        {
+          "arg": "strategies",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/OfStudentId",
           "verb": "get"
         }
       ]

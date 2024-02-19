@@ -102,6 +102,17 @@ module.exports = function(Student) {
         });
     }
 
+    // Hace lo que dice
+    Student.GetStudentById = function(id, callback) {
+        Student.findOne({
+            where: { id },
+            include: { 'studentGroup': ['group', 'grade'] }
+        }, (err, student) => {
+            if (err) return callback(err);
+            return callback(null, student);
+        });
+    }
+
     Student.GroupStudents = function(students,cb) {
         var sortedData = Object.values(students.reduce((result, item) => {
             const key = item.group + item.grade;

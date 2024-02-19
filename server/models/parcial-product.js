@@ -191,10 +191,21 @@ module.exports = function(ParcialProduct) {
         });
     }
 
+    // No puedo quitar este porque no sé que se rompería
     ParcialProduct.GetByStrategy = function(strategy,cb) {
         ParcialProduct.find({where:{strategyId:strategy}},(err,products)=>{
             if(err) return cb(err);
             return cb(null,products);
         });
+    }
+
+    // Obtiene productos de cierta estrategia
+    ParcialProduct.GetByStrategyId = function(id, callback) {
+        ParcialProduct.find({
+                where: { strategyId:id }
+            }, (err, product) => {
+                if (err) return callback(err);
+                return callback(null, product);
+            });
     }
 };
