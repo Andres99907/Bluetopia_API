@@ -302,7 +302,6 @@ module.exports = function(Strategy) {
     }
 
     Strategy.GetAllOfStudent2 = function(id, callback) {
-        console.log("THIS ID IS:"+id);
         Strategy.app.models.Student.findOne({where: {id}, include: 'studentGroup'}, (err, student) => {
             if(err) return callback(err);
 

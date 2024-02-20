@@ -28,7 +28,7 @@
         },
         "gradeScale": {
             "type": "number",
-            "default" : 100
+            "default" : 10
         }
     },
     "validations": [],

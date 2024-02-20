@@ -72,7 +72,7 @@ module.exports = function(Evaluation) {
             let filter = {
                 where:{
                     and:[{
-                        productId:{inq:productsIds}
+                        parcialProductId:{inq:productsIds},
                     },
                 {studentId:student}]
                 },
