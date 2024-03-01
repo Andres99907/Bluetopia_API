@@ -47,7 +47,8 @@
       "property": [
         "GetAll",
         "GetAllOfSchool",
-        "CreateOneWithoutRepeat"
+        "CreateOneWithoutRepeat",
+        "DeleteOne"
       ]
     }
   ],
@@ -115,6 +116,31 @@
         {
           "path": "/",
           "verb": "post"
+        }
+      ]
+    },
+    "DeleteOne": {
+      "accepts": [
+        {
+          "arg": "subjectId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "subjects",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/:subjectId",
+          "verb": "delete"
         }
       ]
     }

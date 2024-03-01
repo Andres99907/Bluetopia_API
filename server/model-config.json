@@ -177,8 +177,9 @@
         "sharedMethods": {
           "*": false,
           "GetAll": false,
-		  "GetAllOfSchool": true,
-          "CreateOneWithoutRepeat": true
+		      "GetAllOfSchool": true,
+          "CreateOneWithoutRepeat": true,
+          "DeleteOne": true
         }
       }
     }
