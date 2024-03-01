@@ -134,19 +134,23 @@ module.exports = function(app) {
     const subjects = [
       {
         name: "Lenguajes",
-        id:1
+        id:1,
+        schoolId: 0
       },
       {
         name: "Saberes y Pensamiento Científico",
-        id:2
+        id:2,
+        schoolId: 0
       },
       {
         name: "Ética, naturaleza y sociedades",
-        id:3
+        id:3,
+        schoolId: 0
       },
       {
         name: "De lo humano y lo comunitario",
-        id:4
+        id:4,
+        schoolId: 0
       },
     ];
 

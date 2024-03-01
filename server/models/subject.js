@@ -32,4 +32,22 @@ module.exports = function(Subject) {
         });
     }
 
+    Subject.GetAllOfSchool = function(schoolId, callback) {
+        // Definir el filtro para buscar los objetos Subject con el schoolId proporcionado o con schoolId igual a 0
+        var filter = {
+            where: {
+                or: [
+                    { schoolId: schoolId },
+                    { schoolId: 0 }
+                ]
+            }
+        };
+    
+        Subject.find(filter, (err, subjects) => {
+            if(err) return callback(err);
+    
+            return callback(null, subjects);
+        });
+    };
+    
 };

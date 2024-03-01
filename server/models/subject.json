@@ -14,6 +14,10 @@
     "name": {
       "type": "string",
       "required": true
+    },
+    "schoolId": {
+      "type": "number",
+      "default": 0
     }
   },
   "validations": [],
@@ -42,6 +46,7 @@
       "permission": "ALLOW",
       "property": [
         "GetAll",
+        "GetAllOfSchool",
         "CreateOneWithoutRepeat"
       ]
     }
@@ -61,6 +66,29 @@
       "http": [
         {
           "path": "/",
+          "verb": "get"
+        }
+      ]
+    },
+    "GetAllOfSchool": {
+      "accepts": [{
+        "arg": "schoolId",
+        "type": "number",
+        "required": true,
+        "description": ""
+      }],
+      "returns": [
+        {
+          "arg": "subjects",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/OfSchool/:schoolId",
           "verb": "get"
         }
       ]
