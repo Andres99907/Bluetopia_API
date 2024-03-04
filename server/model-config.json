@@ -535,6 +535,10 @@
     "dataSource": "mysqlDev",
     "public": true
   },
+  "Rubric": {
+    "dataSource": "mysqlDev",
+    "public": true
+  },
   "RubricProduct": {
     "dataSource": "mysqlDev",
     "public": true
