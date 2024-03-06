@@ -37,9 +37,14 @@ module.exports = function(Subject) {
         // Definir el filtro para buscar los objetos Subject con el schoolId proporcionado o con schoolId igual a 0
         var filter = {
             where: {
-                or: [
-                    { schoolId: schoolId },
-                    { schoolId: 0 }
+                and: [
+                    {
+                        or: [
+                            { schoolId: schoolId },
+                            { schoolId: 0 }
+                        ]
+                    },
+                    { active: true } // Agregar esta condición para que solo aparezcan las asignaturas activas
                 ]
             }
         };
@@ -86,15 +91,16 @@ module.exports = function(Subject) {
                 return callback('SUBJECT_NOT_FOUND');
             }
             
-            // Borrar la asignatura
-            foundSubject.destroy((err) => {
+            // Actualizar el campo active a false
+            foundSubject.updateAttributes({ active: false }, (err) => {
                 if (err) {
                     return callback(err);
                 }
-                return callback(null, 'SUBJECT_DELETED_SUCCESSFULLY');
+                return callback(null, 'SUBJECT_UPDATED_SUCCESSFULLY');
             });
         });
     };
+    
     
     
 };

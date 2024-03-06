@@ -18,6 +18,10 @@
     "schoolId": {
       "type": "number",
       "default": 0
+    },
+    "active": {
+      "type": "boolean",
+      "default": 1
     }
   },
   "validations": [],
