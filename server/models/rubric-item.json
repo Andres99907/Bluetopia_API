@@ -1,0 +1,74 @@
+{
+  "name": "RubricItem",
+  "plural": "RubricItems",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "required": true
+    },
+    "entry": {
+      "type": "string",
+      "required": true
+    },
+    "entryDescription": {
+      "type": "string"
+    },
+    "entryLevel": {
+      "type": "number"
+    },
+    "schoolId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "GetAllOfSchool"
+      ]
+    }
+  ],
+  "methods": {
+    "GetAllOfSchool": {
+      "accepts": [{
+        "arg": "schoolId",
+        "type": "number",
+        "required": true,
+        "description": ""
+      }],
+      "returns": [
+        {
+          "arg": "entries",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/OfSchool/:schoolId",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

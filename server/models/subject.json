@@ -52,7 +52,8 @@
         "GetAll",
         "GetAllOfSchool",
         "CreateOneWithoutRepeat",
-        "DeleteOne"
+        "DeleteOne",
+        "GetEveryOfSchool"
       ]
     }
   ],
@@ -94,6 +95,29 @@
       "http": [
         {
           "path": "/OfSchool/:schoolId",
+          "verb": "get"
+        }
+      ]
+    },
+    "GetEveryOfSchool": {
+      "accepts": [{
+        "arg": "schoolId",
+        "type": "number",
+        "required": true,
+        "description": ""
+      }],
+      "returns": [
+        {
+          "arg": "subjects",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/EveryOfSchool/:schoolId",
           "verb": "get"
         }
       ]

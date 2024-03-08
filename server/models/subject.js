@@ -56,6 +56,24 @@ module.exports = function(Subject) {
         });
     };
 
+    Subject.GetEveryOfSchool = function(schoolId, callback) {
+        // Definir el filtro para buscar los objetos Subject con el schoolId proporcionado o con schoolId igual a 0
+        var filter = {
+            where: {     
+                        or: [
+                            { schoolId: schoolId },
+                            { schoolId: 0 }
+                        ]                
+            }
+        };
+    
+        Subject.find(filter, (err, subjects) => {
+            if(err) return callback(err);
+    
+            return callback(null, subjects);
+        });
+    };
+
     Subject.CreateOneWithoutRepeat2 = function(subject, callback) {
         if(subject.schoolId == 0)
         {return cb('CREATE_SUBJECT_FOR_SCHOOL_ID_0_NOT_PERMITED')}

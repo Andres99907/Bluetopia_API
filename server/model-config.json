@@ -178,6 +178,7 @@
           "*": false,
           "GetAll": false,
 		      "GetAllOfSchool": true,
+          "GetEveryOfSchool": true,
           "CreateOneWithoutRepeat": true,
           "DeleteOne": true
         }
@@ -346,7 +347,7 @@
           "GetSuggested": true,
           "ResetTeams": true,
           "GetAllOfStudent": true,
-		  "GetAllOfStudent2": true
+		      "GetAllOfStudent2": true
         }
       }
     }
@@ -534,6 +535,18 @@
   "AAA": {
     "dataSource": "mysqlDev",
     "public": true
+  },
+  "RubricItem": {
+    "dataSource": "mysqlDev",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+		      "GetAllOfSchool": true
+        }
+      }
+    }
   },
   "Rubric": {
     "dataSource": "mysqlDev",
