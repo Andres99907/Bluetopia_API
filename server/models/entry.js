@@ -35,8 +35,6 @@ module.exports = function(Entry) {
       return cb(err);
     }
 
-    if (!entry.entryLevel)
-    {
     // Buscar el último RubricItem para el schoolId dado
     Entry.find({ where: { schoolId: schoolId }, order: 'entryLevel DESC', limit: 1 }, function(err, lastEntries) {
       if (err) {
@@ -55,17 +53,8 @@ module.exports = function(Entry) {
         schoolId: schoolId // Asegurarse de que el schoolId se está pasando correctamente
       }, cb);
     });
-    }
-    // Crear el nuevo RubricItem
-    Entry.create({
-      entry: entry.entry,
-      entryDescription: entry.entryDescription,
-      entryLevel: entry.entryLevel,
-      schoolId: schoolId // Asegurarse de que el schoolId se está pasando correctamente
-    }, cb);
   };
-
-
+  
   Entry.DeleteOne = function(entryId, callback) {
     
     Entry.findById(entryId, (err, foundEntry) => {

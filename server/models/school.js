@@ -17,10 +17,12 @@ module.exports = function(School) {
             let Entry2 = {entry:"Suficiente", entryDescription: "El alumno cumplió con el rubro al mínimo.", entryLevel: 2, schoolId: newSchool.id};
             let Entry3 = {entry:"Bueno", entryDescription: "El alumno cumplió con el rubro casi en su totalidad.", entryLevel: 3, schoolId: newSchool.id};
             let Entry4 = {entry:"Excelente", entryDescription: "El alumno cumplió con el rubro en su totalidad.", entryLevel: 4, schoolId: newSchool.id};
-            School.app.models.Entry.CreateOneWithoutRepeat(Entry1);
-            School.app.models.Entry.CreateOneWithoutRepeat(Entry2);
-            School.app.models.Entry.CreateOneWithoutRepeat(Entry3);
-            School.app.models.Entry.CreateOneWithoutRepeat(Entry4);
+            
+            School.app.models.Entry.create(Entry1);
+            School.app.models.Entry.create(Entry2);
+            School.app.models.Entry.create(Entry3);
+            School.app.models.Entry.create(Entry4);
+
             if (err) return callback(err);
 
             return callback(null, newSchool);

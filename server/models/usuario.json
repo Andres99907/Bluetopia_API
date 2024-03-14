@@ -38,7 +38,7 @@
         },
         "active": {
             "type": "boolean",
-            "default": false
+            "default": true
         },
         "phone": {
             "type": "string"

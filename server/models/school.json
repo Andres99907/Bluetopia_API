@@ -33,6 +33,10 @@
         "rubricEvaluations": {
             "type": "boolean",
             "default": false
+        },
+        "firstTime": {
+            "type": "boolean",
+            "default": true
         }
     },
     "validations": [],
