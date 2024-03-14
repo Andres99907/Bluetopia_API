@@ -46,8 +46,8 @@ module.exports = function(app) {
         User: {
           name: "SuperUser",
           username: "SuperUser",
-          password: "j4r4b3s0",
-          email: "superuser@jarabepruebas.com",
+          password: "An3v1$o3wr",
+          email: "superuser@anevipruebas.com",
           emailVerified: true,
           active: true
         },
@@ -57,8 +57,8 @@ module.exports = function(app) {
         User: {
           name: "Admin",
           username: "Admin",
-          password: "j4r4b3s0",
-          email: "admin@jarabepruebas.com",
+          password: "An3v1$o3wr",
+          email: "admin@anevipruebas.com",
           emailVerified: true,
           active: true
         },
@@ -68,8 +68,8 @@ module.exports = function(app) {
         User: {
           name: "Parent Jarabe",
           username: "Parent Jarabe",
-          password: "j4r4b3s0",
-          email: "parent@jarabepruebas.com",
+          password: "An3v1$o3wr",
+          email: "parent@anevipruebas.com",
           emailVerified: true,
           active: true
         },
@@ -79,8 +79,8 @@ module.exports = function(app) {
         User: {
           name: "Student Jarabe",
           username: "Student Jarabe",
-          password: "j4r4b3s0",
-          email: "student@jarabepruebas.com",
+          password: "An3v1$o3wr",
+          email: "student@anevipruebas.com",
           emailVerified: true,
           active: true
         },

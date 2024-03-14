@@ -16,7 +16,7 @@
       }
     },
     "rubricsCalifications": {
-      "type": "array",
+      "type": "object",
       "required": false
     },
     "comment": {

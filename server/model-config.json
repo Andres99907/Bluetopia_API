@@ -506,7 +506,8 @@
         "sharedMethods": {
           "*": false,
           "Update": true,
-          "prototype.UpdateData": true
+          "prototype.UpdateData": true,
+          "EnableRubrics": true
         }
       }
     }
@@ -532,28 +533,18 @@
     "dataSource": "mysqlDev",
     "public": false
   },
-  "AAA": {
-    "dataSource": "mysqlDev",
-    "public": true
-  },
-  "RubricItem": {
+  "Entry": {
     "dataSource": "mysqlDev",
     "public": true,
     "options": {
       "remoting": {
         "sharedMethods": {
           "*": false,
-		      "GetAllOfSchool": true
+		      "GetAllOfSchool": true,
+          "CreateOneWithoutRepeat": true,
+          "DeleteOne": true
         }
       }
     }
-  },
-  "Rubric": {
-    "dataSource": "mysqlDev",
-    "public": true
-  },
-  "RubricProduct": {
-    "dataSource": "mysqlDev",
-    "public": true
   }
 }

@@ -1,17 +1,12 @@
 {
-  "name": "RubricItem",
-  "plural": "RubricItems",
+  "name": "Entry",
+  "plural": "Entries",
   "base": "Model",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "id": {
-      "type": "number",
-      "id": true,
-      "required": true
-    },
     "entry": {
       "type": "string",
       "required": true
@@ -42,7 +37,9 @@
       "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": [
-        "GetAllOfSchool"
+        "GetAllOfSchool",
+        "CreateOneWithoutRepeat",
+        "DeleteOne"
       ]
     }
   ],
@@ -67,6 +64,55 @@
         {
           "path": "/OfSchool/:schoolId",
           "verb": "get"
+        }
+      ]
+    },
+    "CreateOneWithoutRepeat": {
+      "accepts": [
+        {
+          "arg": "entry",
+          "type": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "entries",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/",
+          "verb": "post"
+        }
+      ]
+    },"DeleteOne": {
+      "accepts": [
+        {
+          "arg": "entryId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "entries",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/:entryId",
+          "verb": "delete"
         }
       ]
     }

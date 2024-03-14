@@ -29,6 +29,10 @@
         "gradeScale": {
             "type": "number",
             "default" : 10
+        },
+        "rubricEvaluations": {
+            "type": "boolean",
+            "default": false
         }
     },
     "validations": [],
@@ -85,6 +89,31 @@
             "http": [{
                 "path": "/",
                 "verb": "patch"
+            }]
+        },        
+        "EnableRubrics": {
+            "accepts": [{
+                "arg": "schoolId",
+                "type": "number",
+                "required": true,
+                "description": ""
+            },
+            {
+                "arg": "tf",
+                "type": "boolean",
+                "required": true,
+                "description": ""
+            }],
+            "returns": [{
+                "arg": "schoolSaved",
+                "type": "object",
+                "root": true,
+                "description": ""
+            }],
+            "description": "",
+            "http": [{
+                "path": "/EnableRubrics",
+                "verb": "post"
             }]
         }
     }

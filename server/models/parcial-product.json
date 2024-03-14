@@ -22,9 +22,6 @@
       "required": true,
       "default": false
     },
-    "maxCalification": {
-      "type": "number"
-    },
     "rubric": {
       "type": "object"
     }
